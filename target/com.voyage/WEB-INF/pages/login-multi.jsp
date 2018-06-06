@@ -47,7 +47,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <p class="text-center mb-lg">
                <br>
                <a href="#">
-                  <img src="img/logo.jpg" alt="Image" class="block-center img-rounded">
+                  <img src="img/logo.jpg" alt="Image" class="block-center img-rounded" width=240 height="150">
                </a>
             </p>
             <div id="accordion" data-toggle="collapse-autoactive" class="panel-group">
@@ -69,14 +69,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                               <input id="exampleInputPassword1" name="password" type="password" placeholder="Password" value="" class="form-control">
                               <span class="fa fa-lock form-control-feedback text-muted"></span>
                            </div>
-						   <div class="form-group has-feedback">
-                              <label for="exampleInputPassword3">验证码</label>
-                             <div class="code-box" id="code-box">
-						<input id="exampleInputPassword3" type="text" name="code" class="code-input" />
-						<p></p>
-						<span>>>></span>
-					         </div>                     
-                           </div>					   						  						 
                           <input type="button" id="login_btn" class="btn btn-block btn-primary" value="登录"> </input>
                         </form>
                      </div>
@@ -147,9 +139,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </form>
                      </div>
                   </div>
-				  <div class="panel-heading radius-clear">
-				       </span><a href="/login/visitor">跳过登录，以游客身份浏览</a>
-				  </div>
                </div>
                <!-- END panel-->
                <div class="panel radius-clear b0 shadow-clear">

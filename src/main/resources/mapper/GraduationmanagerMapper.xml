@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sailing.dao.GraduationmanagerMapper">
+  <resultMap id="BaseResultMap" type="com.sailing.entity.Graduationmanager">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="teacher" jdbcType="INTEGER" property="teacher" />
+    <result column="student" jdbcType="INTEGER" property="student" />
+    <result column="
+assignmentBook" jdbcType="VARCHAR" property="
+assignmentbook" />
+    <result column="topicSelectionReport" jdbcType="VARCHAR" property="topicselectionreport" />
+    <result column="midCheck" jdbcType="VARCHAR" property="midcheck" />
+    <result column="graduationStudy" jdbcType="VARCHAR" property="graduationstudy" />
+    <result column="reviewForm" jdbcType="VARCHAR" property="reviewform" />
+    <result column="reviewerOpinionForm" jdbcType="VARCHAR" property="revieweropinionform" />
+    <result column="resultForm" jdbcType="VARCHAR" property="resultform" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, teacher, student, 
+assignmentBook, topicSelectionReport, midCheck, graduationStudy, 
+    reviewForm, reviewerOpinionForm, resultForm
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from graduationmanager
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from graduationmanager
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sailing.entity.Graduationmanager">
+    insert into graduationmanager (id, teacher, student, 
+      
+assignmentBook, topicSelectionReport, 
+      midCheck, graduationStudy, reviewForm, 
+      reviewerOpinionForm, resultForm)
+    values (#{id,jdbcType=INTEGER}, #{teacher,jdbcType=INTEGER}, #{student,jdbcType=INTEGER}, 
+      #{
+assignmentbook,jdbcType=VARCHAR}, #{topicselectionreport,jdbcType=VARCHAR}, 
+      #{midcheck,jdbcType=VARCHAR}, #{graduationstudy,jdbcType=VARCHAR}, #{reviewform,jdbcType=VARCHAR}, 
+      #{revieweropinionform,jdbcType=VARCHAR}, #{resultform,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sailing.entity.Graduationmanager">
+    insert into graduationmanager
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="teacher != null">
+        teacher,
+      </if>
+      <if test="student != null">
+        student,
+      </if>
+      <if test="
+assignmentbook != null">
+        
+assignmentBook,
+      </if>
+      <if test="topicselectionreport != null">
+        topicSelectionReport,
+      </if>
+      <if test="midcheck != null">
+        midCheck,
+      </if>
+      <if test="graduationstudy != null">
+        graduationStudy,
+      </if>
+      <if test="reviewform != null">
+        reviewForm,
+      </if>
+      <if test="revieweropinionform != null">
+        reviewerOpinionForm,
+      </if>
+      <if test="resultform != null">
+        resultForm,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="teacher != null">
+        #{teacher,jdbcType=INTEGER},
+      </if>
+      <if test="student != null">
+        #{student,jdbcType=INTEGER},
+      </if>
+      <if test="
+assignmentbook != null">
+        #{
+assignmentbook,jdbcType=VARCHAR},
+      </if>
+      <if test="topicselectionreport != null">
+        #{topicselectionreport,jdbcType=VARCHAR},
+      </if>
+      <if test="midcheck != null">
+        #{midcheck,jdbcType=VARCHAR},
+      </if>
+      <if test="graduationstudy != null">
+        #{graduationstudy,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewform != null">
+        #{reviewform,jdbcType=VARCHAR},
+      </if>
+      <if test="revieweropinionform != null">
+        #{revieweropinionform,jdbcType=VARCHAR},
+      </if>
+      <if test="resultform != null">
+        #{resultform,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sailing.entity.Graduationmanager">
+    update graduationmanager
+    <set>
+      <if test="teacher != null">
+        teacher = #{teacher,jdbcType=INTEGER},
+      </if>
+      <if test="student != null">
+        student = #{student,jdbcType=INTEGER},
+      </if>
+      <if test="
+assignmentbook != null">
+        
+assignmentBook = #{
+assignmentbook,jdbcType=VARCHAR},
+      </if>
+      <if test="topicselectionreport != null">
+        topicSelectionReport = #{topicselectionreport,jdbcType=VARCHAR},
+      </if>
+      <if test="midcheck != null">
+        midCheck = #{midcheck,jdbcType=VARCHAR},
+      </if>
+      <if test="graduationstudy != null">
+        graduationStudy = #{graduationstudy,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewform != null">
+        reviewForm = #{reviewform,jdbcType=VARCHAR},
+      </if>
+      <if test="revieweropinionform != null">
+        reviewerOpinionForm = #{revieweropinionform,jdbcType=VARCHAR},
+      </if>
+      <if test="resultform != null">
+        resultForm = #{resultform,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sailing.entity.Graduationmanager">
+    update graduationmanager
+    set teacher = #{teacher,jdbcType=INTEGER},
+      student = #{student,jdbcType=INTEGER},
+      
+assignmentBook = #{
+assignmentbook,jdbcType=VARCHAR},
+      topicSelectionReport = #{topicselectionreport,jdbcType=VARCHAR},
+      midCheck = #{midcheck,jdbcType=VARCHAR},
+      graduationStudy = #{graduationstudy,jdbcType=VARCHAR},
+      reviewForm = #{reviewform,jdbcType=VARCHAR},
+      reviewerOpinionForm = #{revieweropinionform,jdbcType=VARCHAR},
+      resultForm = #{resultform,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

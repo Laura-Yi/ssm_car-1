@@ -2,11 +2,9 @@ package com.sailing.service;
 
 import com.sailing.dao.UserMapper;
 import com.sailing.entity.User;
-import com.sailing.service.LoginService;
 import com.sailing.util.MD5Util;
 import com.sailing.util.SendMailUtil;
 import com.sailing.util.ServiceException;
-import com.sailing.dao.UserMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -38,7 +36,6 @@ public class LoginServiceIml implements LoginService {
         if (user1 == null) {
             user1 = userdao.selectByUemail(request.getParameter("uemail"));
             if (user1 == null) {
-
                 User user = new User();
                 Random random = new Random();
                 int result = random.nextInt(60000) % 30001 + 30000;
