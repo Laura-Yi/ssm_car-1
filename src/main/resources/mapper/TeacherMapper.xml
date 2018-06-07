@@ -79,4 +79,10 @@
       `password` = #{password,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from teacher
+    where `name` = #{username,jdbcType=VARCHAR}
+  </select>
 </mapper>

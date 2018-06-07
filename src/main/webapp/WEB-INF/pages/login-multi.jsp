@@ -53,7 +53,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div id="accordion" data-toggle="collapse-autoactive" class="panel-group">
                <!-- START panel-->
                <div class="panel radius-clear b0 shadow-clear">
-                  <div class="panel-heading radius-clear panel-heading-active"><a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="text-muted btn-block text-center">用户登录</a>
+                  <div class="panel-heading radius-clear panel-heading-active"><a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="text-muted btn-block text-center">小秘登陆</a>
                   </div>
                   <div id="collapseOne" class="panel-collapse collapse in">
                      <div class="panel-body">
@@ -98,24 +98,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                               <input id="signupInputRePassword1" name="repeatpassword" type="password" placeholder="ReType Password" class="form-control">
                               <span class="fa fa-lock form-control-feedback text-muted"></span>
                            </div>
-						   <div class="form-group has-feedback">
-                              <label for="signupInputEmail1">邮箱</label>
-                              <input id="signupInputEmail1" name="uemail" type="email" placeholder="Enter email" class="form-control">
-                              <span class="fa fa-envelope form-control-feedback text-muted"></span>
-                           </div>
-						   <div class="form-group has-feedback">
-                              <label for="signupInputPhone">手机号码</label>
-                              <input id="signupInputPhone" name="uphone" type="phone" placeholder="请输入正确的11位手机号码" class="form-control">
-                              <span class="fa fa-envelope form-control-feedback text-muted"></span>
-                           </div>
-                           <div class="clearfix">
-                              <div class="checkbox c-checkbox pull-left mt0">
-                                 <label>
-                                    <input id="check" type="checkbox" value="">
-                                    <span class="fa fa-check"></span>同意 <a href="#">协议</a>
-                                 </label>
-                              </div>
-                           </div>
                            <input type="button" id="register_btn" value="提交" class="btn btn-block btn-primary"> </input>
                         </form>
                      </div>
@@ -124,49 +106,44 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                <!-- END panel-->
                <!-- START panel-->
                <div class="panel radius-clear b0 shadow-clear">
-                  <div class="panel-heading radius-clear"><a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="text-muted btn-block text-center">忘记密码?</a>
+                  <div class="panel-heading radius-clear"><a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="text-muted btn-block text-center">教师登陆</a>
                   </div>
                   <div id="collapseThree" class="panel-collapse collapse">
                      <div class="panel-body">
-                        <form role="form">
-                           <p class="text-center">输入邮箱地址以接受密码找回邮件</p>
+                        <form role="form" class="mb-lg" method="post">
                            <div class="form-group has-feedback">
-                              <label for="resetInputEmail1">邮件地址</label>
-                              <input id="resetInputEmail1" type="email" placeholder="Enter email" class="form-control">
+                              <label for="teacherInputName">用户名</label>
+                              <input id="teacherInputName" name="username" type="name" placeholder="Enter name" value="" class="form-control">
                               <span class="fa fa-envelope form-control-feedback text-muted"></span>
                            </div>
-                           <button type="submit" class="btn btn-danger btn-block">重置</button>
+                           <div class="form-group has-feedback">
+                              <label for="teacherInputPassword">密  码</label>
+                              <input id="teacherInputPassword" name="password" type="password" placeholder="Password" value="" class="form-control">
+                              <span class="fa fa-lock form-control-feedback text-muted"></span>
+                           </div>
+                           <input type="button" id="teacher_login_btn" class="btn btn-block btn-primary" value="登录"> </input>
                         </form>
                      </div>
                   </div>
                </div>
                <!-- END panel-->
                <div class="panel radius-clear b0 shadow-clear">
-                  <div class="panel-heading radius-clear"><a data-toggle="collapse" data-parent="#accordion" href="#collapseFourth" class="text-muted btn-block text-center">管理员登录</a>
+                  <div class="panel-heading radius-clear"><a data-toggle="collapse" data-parent="#accordion" href="#collapseFourth" class="text-muted btn-block text-center">学生登录</a>
                   </div>
                   <div id="collapseFourth" class="panel-collapse collapse">
                      <div class="panel-body">
                         <form role="form" class="mb-lg" method="post">
-
                            <div class="form-group has-feedback">
-                              <label for="adminInputName">用户名</label>
-                              <input id="adminInputName" name="username" type="name" placeholder="Enter name" value="" class="form-control">
+                              <label for="studentInputName">用户名</label>
+                              <input id="studentInputName" name="username" type="name" placeholder="Enter name" value="" class="form-control">
                               <span class="fa fa-envelope form-control-feedback text-muted"></span>
                            </div>
                            <div class="form-group has-feedback">
-                              <label for="adminInputPassword1">密  码</label>
-                              <input id="adminInputPassword1" name="password" type="password" placeholder="Password" value="" class="form-control">
+                              <label for="studentInputPassword">密  码</label>
+                              <input id="studentInputPassword" name="password" type="password" placeholder="Password" value="" class="form-control">
                               <span class="fa fa-lock form-control-feedback text-muted"></span>
                            </div>
-                           <%--<div class="form-group has-feedback">--%>
-                              <%--<label for="adminInputPassword3">验证码</label>--%>
-                              <%--<div class="code-box" id="code-box1">--%>
-                                 <%--<input id="adminInputPassword3" type="text" name="code" class="code-input" />--%>
-                                 <%--<p></p>--%>
-                                 <%--<span>>>></span>--%>
-                              <%--</div>--%>
-                           <%--</div>--%>
-                           <input type="button" id="admin_login_btn" class="btn btn-block btn-primary" value="登录"> </input>
+                           <input type="button" id="student_login_btn" class="btn btn-block btn-primary" value="登录"> </input>
                         </form>
                      </div>
                   </div>
@@ -245,14 +222,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
            var username = $.trim($("#signupInputName").val());
            var password = $.trim($("#signupInputPassword1").val());
            var repeatpassword = $.trim($("#signupInputRePassword1").val());
-           var email = $.trim($("#signupInputEmail1").val());
-           var phone = $.trim($("#signupInputPhone").val());
            //var check=$.trim($("#check").val());
 
            //用户名，手机号，邮箱的正则表达式
            var user_reg=/^[a-zA-Z][a-zA-Z0-9]{7,14}$/;
-           var phone_reg=/^((13[0-9])|(14[5|7])|(15[0-3]|[5-9])|(18[0,5-9]))[0-9]{8}$/;
-           var email_reg=/^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/;
 
            if(username == ""){
                alert("用户名不能为空！");
@@ -269,35 +242,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                alert("两次输入密码不相同！")
                return false;
            }
-           else if(email==""){
-               alert("电子邮箱不能为空");
-               return false;
-           }
-           else if(!email_reg.test(email)){
-               alert("电子邮箱格式不正确");
-               return false;
-           }
-           else if(phone==""){
-               alert("手机号码不能为空");
-               return false;
-           }
-           else if(!phone_reg.test(phone)){
-               alert("手机号格式不正确");
-               return false;
-           }
-           else if(!$("#check").is(":checked")){
-               alert("请同意协议后再注册！");
-               return false;
-           }
           else { $("#regform").submit();}
        });
 
    </script>
-   <!-- END Scripts-->
+   <%--教师登陆--%>
    <script type="text/javascript">
-       $("#admin_login_btn").click(function () {
-           var username = $.trim($("#adminInputName").val());
-           var password = $.trim($("#adminInputPassword1").val());
+       $("#teacher_login_btn").click(function () {
+           var username = $.trim($("#teacherInputName").val());
+           var password = $.trim($("#teacherInputPassword").val());
            if (username == "") {
                alert("用户名不能为空！");
                return false;
@@ -310,7 +263,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
            $.ajax({
                type: "POST",
-               url: "../login/adminlogin",
+               url: "../teacherLogin/checklogin",
                data: data,
 
                success: function (msg) {
@@ -323,6 +276,39 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                }
            });
        });
+
+
+       /*学生登陆*/
+       $("#student_login_btn").click(function () {
+           var username = $.trim($("#studentInputName").val());
+           var password = $.trim($("#studentInputPassword").val());
+           if (username == "") {
+               alert("用户名不能为空！");
+               return false;
+           } else if (password == "") {
+               alert("密码不能为空！");
+               return false;
+           }
+           //ajax去服务器端校验
+           var data = {username: username, password: password};
+
+           $.ajax({
+               type: "POST",
+               url: "../studentlogin/checklogin",
+               data: data,
+
+               success: function (msg) {
+                   if (msg == "success") {
+                       window.location.href = "/login/history";
+                   }
+                   else if (msg == "fail") {
+                       alert("用户名或密码错误！");
+                   }
+               }
+           });
+       });
+
+
    </script>
 </body>
 

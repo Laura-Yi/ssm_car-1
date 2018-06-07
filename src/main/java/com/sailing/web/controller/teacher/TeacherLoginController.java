@@ -1,7 +1,7 @@
-package com.sailing.web.controller.Admin;
+package com.sailing.web.controller.teacher;
 
-import com.sailing.entity.Admin;
-import com.sailing.service.AdminService;
+import com.sailing.entity.Teacher;
+import com.sailing.service.TeacherService;
 import com.sailing.util.MD5Util;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,19 +18,19 @@ import java.io.IOException;
 *@author: yichaoqun
 */
 @Controller
-@RequestMapping("AdminLogin")
-public class AdminLoginController {
+@RequestMapping("teacherLogin")
+public class TeacherLoginController {
 
     @Resource
-    AdminService adminService;
+    TeacherService teacherService;
 
     //登录验证
     @RequestMapping("/checklogin")
     @ResponseBody
     public String checkLogin(HttpSession session, HttpServletRequest request) throws IOException {
-        Admin admin = adminService.checkLogin(request.getParameter("username"), MD5Util.encode2hex(request.getParameter("password")));
-        if (admin != null) {
-            session.setAttribute("admin",admin);
+        Teacher teacher = teacherService.checkLogin(request.getParameter("username"), MD5Util.encode2hex(request.getParameter("password")));
+        if (teacher != null) {
+            session.setAttribute("teacher",teacher);
             return "success";
         } else { return "fail";}
     }
