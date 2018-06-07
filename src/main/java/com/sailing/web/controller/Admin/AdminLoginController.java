@@ -18,11 +18,19 @@ import java.io.IOException;
 *@author: yichaoqun
 */
 @Controller
-@RequestMapping("AdminLogin")
+@RequestMapping("adminLogin")
 public class AdminLoginController {
 
     @Resource
     AdminService adminService;
+
+
+    //登录成功 进入主页
+    @RequestMapping("/home")
+    public String home(HttpServletRequest request) {
+        return "admin/homepage";
+    }
+
 
     //登录验证
     @RequestMapping("/checklogin")
