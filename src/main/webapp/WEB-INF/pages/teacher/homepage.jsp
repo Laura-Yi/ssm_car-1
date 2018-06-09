@@ -79,7 +79,7 @@
                         <a href="#graduation" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>毕业论文</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
                         <div id="graduation" class="collapse ">
                             <ul class="nav">
-                                <li><a href="goTeacher/publishGraTopic" class="">发布论文</a></li>
+                                <li><a href="${basePath}/goTeacher/publishGraTopic" class="">发布论文</a></li>
                                 <li><a href="page-profile.html" class="">自己管理的论文</a></li>
                             </ul>
                         </div>

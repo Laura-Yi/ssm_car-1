@@ -1,7 +1,9 @@
 package com.sailing.dao;
 
 import com.sailing.entity.Student;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface StudentMapper {
     int deleteByPrimaryKey(Integer id);
 

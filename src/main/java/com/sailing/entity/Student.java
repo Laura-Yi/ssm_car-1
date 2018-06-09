@@ -7,8 +7,6 @@ public class Student implements Serializable {
 
     private String name;
 
-    private String loginname;
-
     private String password;
 
     private static final long serialVersionUID = 1L;
@@ -29,14 +27,6 @@ public class Student implements Serializable {
         this.name = name;
     }
 
-    public String getLoginname() {
-        return loginname;
-    }
-
-    public void setLoginname(String loginname) {
-        this.loginname = loginname;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -53,7 +43,6 @@ public class Student implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
         sb.append(", name=").append(name);
-        sb.append(", loginname=").append(loginname);
         sb.append(", password=").append(password);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");

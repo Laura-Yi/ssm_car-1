@@ -1,11 +1,8 @@
 package com.sailing.service.impl;
 
 import com.sailing.dao.StudentMapper;
-import com.sailing.dao.TeacherMapper;
 import com.sailing.entity.Student;
-import com.sailing.entity.Teacher;
 import com.sailing.service.StudentService;
-import com.sailing.service.TeacherService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

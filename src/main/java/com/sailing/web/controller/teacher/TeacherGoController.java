@@ -15,6 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class TeacherGoController {
     @RequestMapping("/{view}")
     public String goTeacher(@PathVariable String view){
-        return "teacher/view";
+        return "teacher/"+view;
     }
 }

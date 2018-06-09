@@ -24,6 +24,13 @@ public class StudentLoginController {
     @Resource
     StudentService studentService;
 
+    //登录成功 进入管理页面
+    @RequestMapping("/homepage")
+    public String home(HttpServletRequest request) {
+
+        return "student/homepage";
+    }
+
     //登录验证
     @RequestMapping("/checklogin")
     @ResponseBody

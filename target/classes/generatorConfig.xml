@@ -31,16 +31,16 @@
     <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources" />
     <javaClientGenerator targetPackage="com.sailing.dao" targetProject="src/main/java" type="XMLMAPPER" />
     <!-- 生成表并且不生成example -->
-    <table schema="managersystem" tableName="admin"  enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-             enableUpdateByExample="false" />
+    <!--<table schema="managersystem" tableName="admin"  enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+             enableUpdateByExample="false" />-->
    <!-- <table schema="managersystem" tableName="building"  enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
              enableUpdateByExample="false" />
     <table schema="managersystem" tableName="classroom"  enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
              enableUpdateByExample="false" />-->
     <!--<table schema="managersystem" tableName="educationplan"  enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
              enableUpdateByExample="false" />-->
-    <table schema="managersystem" tableName="graduationmanager"  enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-             enableUpdateByExample="false" />
+    <!--<table schema="managersystem" tableName="graduationmanager"  enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+             enableUpdateByExample="false" />-->
     <!--<table schema="managersystem" tableName="projectmanager"  enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
              enableUpdateByExample="false" />
     <table schema="managersystem" tableName="projectcost"  enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"

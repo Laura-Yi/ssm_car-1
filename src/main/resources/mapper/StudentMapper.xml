@@ -4,11 +4,10 @@
   <resultMap id="BaseResultMap" type="com.sailing.entity.Student">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="loginName" jdbcType="VARCHAR" property="loginname" />
     <result column="password" jdbcType="VARCHAR" property="password" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, `name`, loginName, `password`
+    id, `name`, `password`
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -21,10 +20,10 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.sailing.entity.Student">
-    insert into student (id, `name`, loginName, 
-      `password`)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{loginname,jdbcType=VARCHAR}, 
-      #{password,jdbcType=VARCHAR})
+    insert into student (id, `name`, `password`
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.sailing.entity.Student">
     insert into student
@@ -34,9 +33,6 @@
       </if>
       <if test="name != null">
         `name`,
-      </if>
-      <if test="loginname != null">
-        loginName,
       </if>
       <if test="password != null">
         `password`,
@@ -49,9 +45,6 @@
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="loginname != null">
-        #{loginname,jdbcType=VARCHAR},
-      </if>
       <if test="password != null">
         #{password,jdbcType=VARCHAR},
       </if>
@@ -63,9 +56,6 @@
       <if test="name != null">
         `name` = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="loginname != null">
-        loginName = #{loginname,jdbcType=VARCHAR},
-      </if>
       <if test="password != null">
         `password` = #{password,jdbcType=VARCHAR},
       </if>
@@ -75,7 +65,6 @@
   <update id="updateByPrimaryKey" parameterType="com.sailing.entity.Student">
     update student
     set `name` = #{name,jdbcType=VARCHAR},
-      loginName = #{loginname,jdbcType=VARCHAR},
       `password` = #{password,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>

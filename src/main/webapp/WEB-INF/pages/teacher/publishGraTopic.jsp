@@ -120,7 +120,7 @@
                                 <h3 class="panel-title">Basic Table</h3>
                             </div>
                             <div class="panel-body">
-                                <form action="" method="post">
+                                <form action="${basePath}/teacherGraduate/publish" method="post">
                                 <table class="table">
                                     <tr>
                                         <td>课题主题</td>
@@ -128,11 +128,10 @@
                                     </tr>
                                     <tr>
                                         <td>课题描述</td>
-                                        <td><td><input name="Graduationmanager.description" type="text"></td></td>
+                                        <td><input name="Graduationmanager.description" type="text"></td>
                                     </tr>
                                     <tr>
-                                        <td>发布</td>
-                                        <td><td><input type="submit" value="发布"></td></td>
+                                        <td><input type="submit" value="发布"></td>
                                     </tr>
                                 </table>
                                 </form>
