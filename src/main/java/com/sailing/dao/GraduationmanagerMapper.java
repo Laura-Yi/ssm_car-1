@@ -1,7 +1,9 @@
 package com.sailing.dao;
 
 import com.sailing.entity.Graduationmanager;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface GraduationmanagerMapper {
     int deleteByPrimaryKey(Integer id);
 

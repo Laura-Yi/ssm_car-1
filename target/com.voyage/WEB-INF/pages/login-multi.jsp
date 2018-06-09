@@ -60,16 +60,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <form role="form" class="mb-lg" method="post">
 
                            <div class="form-group has-feedback">
-                              <label for="exampleInputName">用户名</label>
-                              <input id="exampleInputName" name="username" type="name" placeholder="Enter name" value="" class="form-control">
+                              <label for="adminInputName">用户名</label>
+                              <input id="adminInputName" name="username" type="name" placeholder="Enter name" value="" class="form-control">
                               <span class="fa fa-envelope form-control-feedback text-muted"></span>
                            </div>
                            <div class="form-group has-feedback">
-                              <label for="exampleInputPassword1">密  码</label>
-                              <input id="exampleInputPassword1" name="password" type="password" placeholder="Password" value="" class="form-control">
+                              <label for="adminInputPassword">密  码</label>
+                              <input id="adminInputPassword" name="password" type="password" placeholder="Password" value="" class="form-control">
                               <span class="fa fa-lock form-control-feedback text-muted"></span>
                            </div>
-                          <input type="button" id="login_btn" class="btn btn-block btn-primary" value="登录"> </input>
+                          <input type="button" id="admin_login_btn" class="btn btn-block btn-primary" value="登录"> </input>
                         </form>
                      </div>
                   </div>
@@ -185,9 +185,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
    <!--登录js-->
    <script type="text/javascript">
-       $("#login_btn").click(function () {
-           var username = $.trim($("#exampleInputName").val());
-           var password = $.trim($("#exampleInputPassword1").val());
+       $("#admin_login_btn").click(function () {
+           var username = $.trim($("#adminInputName").val());
+           var password = $.trim($("#adminInputPassword").val());
            if (username == "") {
                alert("用户名不能为空！");
                return false;
@@ -200,12 +200,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
            $.ajax({
                type: "POST",
-               url: "../login/checklogin",
+               url: "/adminLogin/checklogin",
                data: data,
 
                success: function (msg) {
                    if (msg == "success") {
-                       window.location.href = "/login/home";
+                       window.location.href = "/adminLogin/homepage";
                    }
                    else if (msg == "fail") {
                        alert("用户名或密码错误！");
@@ -263,12 +263,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
            $.ajax({
                type: "POST",
-               url: "../teacherLogin/checklogin",
+               url: "/teacherLogin/checklogin",
                data: data,
 
                success: function (msg) {
                    if (msg == "success") {
-                       window.location.href = "/login/history";
+                       window.location.href = "/teacherLogin/homepage";
                    }
                    else if (msg == "fail") {
                        alert("用户名或密码错误！");
@@ -294,12 +294,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
            $.ajax({
                type: "POST",
-               url: "../studentlogin/checklogin",
+               url: "/studentlogin/checklogin",
                data: data,
 
                success: function (msg) {
                    if (msg == "success") {
-                       window.location.href = "/login/history";
+                       window.location.href = "/studentlogin/homepage";
                    }
                    else if (msg == "fail") {
                        alert("用户名或密码错误！");
