@@ -124,15 +124,16 @@
                                 <table class="table">
                                     <tr>
                                         <td>课题主题</td>
-                                        <td><input name="Graduationmanager.topic" type="text"></td>
+                                        <td><input name="topic" type="text"></td>
                                     </tr>
                                     <tr>
                                         <td>课题描述</td>
-                                        <td><input name="Graduationmanager.description" type="text"></td>
+                                        <td><input name="description" type="text"></td>
                                     </tr>
                                     <tr>
                                         <td><input type="submit" value="发布"></td>
                                     </tr>
+                                    <tr>${publicResult}</tr>
                                 </table>
                                 </form>
                             </div>

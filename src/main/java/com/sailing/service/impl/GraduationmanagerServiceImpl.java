@@ -20,6 +20,7 @@ public class GraduationmanagerServiceImpl implements GraduationmanagerService {
 
     @Override
     public int insert(Graduationmanager graduationmanager) {
-        return graduationmanagerMapper.insertSelective(graduationmanager);
+        graduationmanagerMapper.insertSelective(graduationmanager);
+        return graduationmanager.getId();
     }
 }

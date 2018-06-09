@@ -30,9 +30,9 @@ public class TeacherGraduationController {
         graduationmanager.setTeacher(teacher.getId());
         int result = graduationmanagerService.insert(graduationmanager);
         if (result > 0) {
-            model.addAttribute("publicResule","发布成功");
+            model.addAttribute("publicResult","发布成功");
         } else {
-            model.addAttribute("publicResule","发布失败，请重新发布");
+            model.addAttribute("publicResult","发布失败，请重新发布");
         }
         return "teacher/publishGraTopic";
     }
