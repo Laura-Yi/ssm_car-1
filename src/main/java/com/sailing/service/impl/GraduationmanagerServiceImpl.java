@@ -6,6 +6,7 @@ import com.sailing.service.GraduationmanagerService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
 *@description:毕业论文模块
@@ -22,5 +23,20 @@ public class GraduationmanagerServiceImpl implements GraduationmanagerService {
     public int insert(Graduationmanager graduationmanager) {
         graduationmanagerMapper.insertSelective(graduationmanager);
         return graduationmanager.getId();
+    }
+
+    @Override
+    public List<Graduationmanager> selectGraduationmanagerByTeacher(Integer teacherId) {
+        return graduationmanagerMapper.selectGraduationmanagerByTeacher(teacherId);
+    }
+
+    @Override
+    public Graduationmanager selectGraduationmanagerById(Integer graduationId) {
+        return graduationmanagerMapper.selectByPrimaryKey(graduationId);
+    }
+
+    @Override
+    public void updateGraduationmanager(Graduationmanager graduationmanager) {
+        graduationmanagerMapper.updateByPrimaryKeySelective(graduationmanager);
     }
 }

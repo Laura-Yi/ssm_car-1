@@ -1,7 +1,10 @@
 package com.sailing.dao;
 
 import com.sailing.entity.Graduationmanager;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface GraduationmanagerMapper {
@@ -16,4 +19,6 @@ public interface GraduationmanagerMapper {
     int updateByPrimaryKeySelective(Graduationmanager record);
 
     int updateByPrimaryKey(Graduationmanager record);
+
+    List<Graduationmanager> selectGraduationmanagerByTeacher(@Param("teacherId")Integer teacherId);
 }

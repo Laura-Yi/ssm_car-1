@@ -80,7 +80,7 @@
                         <div id="graduation" class="collapse ">
                             <ul class="nav">
                                 <li><a href="${basePath}/goTeacher/publishGraTopic" class="">发布论文</a></li>
-                                <li><a href="${basePath}/teacherGraduate/show" class="">自己管理的论文</a></li>
+                                <li><a href="${basePath}/teacherGraduate/show" class="active">自己管理的论文</a></li>
                             </ul>
                         </div>
                     </li>
@@ -111,7 +111,84 @@
         <!-- MAIN CONTENT -->
         <div class="main-content">
             <div class="container-fluid">
-                <h3 class="page-title">欢迎来到教学管理系统</h3>
+                <h3 class="page-title">发布毕业论文课题</h3>
+                <div class="row">
+                    <div class="col-md-6">
+                        <!-- BASIC TABLE -->
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">论文列表</h3>
+                            </div>
+                            <div class="panel-body">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>课题：</th>
+                                        <th>${graduationmanager.topic}</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>老师</td>
+                                            <td>${graduationmanager.teacher}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>学生</td>
+                                            <td>${graduationmanager.student}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>描述</td>
+                                            <td>${graduationmanager.description}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>任务书</td>
+                                            <td>
+                                            <c:choose>
+                                                <c:when test="${graduationmanager.bookassign eq null}">
+                                                    <form action="${basePath}/teacherGraduate/uploadfile/任务书?graduationId=${graduationmanager.id}" method="post" enctype="multipart/form-data">
+                                                        选择文件：<input type="file" name="file"/>
+                                                        <input type="submit" value="提交"/>
+                                                    </form>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <form action="${basePath}/teacherGraduate/downfile/任务书?graduationId=${graduationmanager.id}" method="post">
+                                                        <input type="submit" value="下载">  <input  type="hidden" name="filePath" value="${graduationmanager.bookassign}" >
+                                                    </form>
+                                                </c:otherwise>
+                                            </c:choose>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>选题报告</td>
+                                            <td>${graduationmanager.topicselectionreport}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>中期考核表</td>
+                                            <td>${graduationmanager.midcheck}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>毕业论文</td>
+                                            <td>${graduationmanager.graduationstudy}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>评阅表</td>
+                                            <td>${graduationmanager.reviewform}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>评阅意见表</td>
+                                            <td>${graduationmanager.revieweropinionform}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>评审结果</td>
+                                            <td>${graduationmanager.resultform}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- END BASIC TABLE -->
+                    </div>
+                </div>
             </div>
         </div>
         <!-- END MAIN CONTENT -->
@@ -130,5 +207,23 @@
 <script src="manager/vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="manager/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <script src="manager/scripts/klorofil-common.js"></script>
+<script>
+    $("input[name='doDel']").click(function () {
+        var graduationId = this.value;
+        jQuery.ajax({
+            url: 'localhost/student/doDel.action',
+            data: { "studentId": studentId },
+            dataType: "json",
+            type: "POST"
+        });
+        window.localtion.reload();
+    })
+
+    function getFileFromPath(path) {
+        var arr = path.split('\\');
+        path = arr[arr.length-1];
+    }
+
+</script>
 </body>
 </html>

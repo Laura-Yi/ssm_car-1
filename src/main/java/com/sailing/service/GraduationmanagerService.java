@@ -2,6 +2,8 @@ package com.sailing.service;
 
 import com.sailing.entity.Graduationmanager;
 
+import java.util.List;
+
 /**
 *@description: 毕业论文模块Service
 *@date: 12:15 2018/6/9
@@ -14,4 +16,10 @@ public interface GraduationmanagerService {
      * @return
      */
     public int insert(Graduationmanager graduationmanager);
+
+    List<Graduationmanager> selectGraduationmanagerByTeacher(Integer id);
+
+    Graduationmanager selectGraduationmanagerById(Integer graduationId);
+
+    void updateGraduationmanager(Graduationmanager graduationmanager);
 }

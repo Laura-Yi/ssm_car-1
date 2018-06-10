@@ -216,10 +216,10 @@
                      </tr>
                      <thead>
                      <tbody id= "table-tbody" class="table-tbody">
-                     <c:forEach items="${itemsList}" var="item">
+                     <c:forEach items="${graduationmanagerList}" var="graduation">
                         <tr>
                            <td>${item.carId}</td>
-                           <td>${item.carName}</td>
+                           <td>${graduation.}</td>
                            <td><a href="/page/details?id=${item.carId}">${item.confName}</a></td>
                            <td>${item.gearbox}</td>
                            <td>${item.engine}</td>
