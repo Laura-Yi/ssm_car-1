@@ -111,7 +111,47 @@
         <!-- MAIN CONTENT -->
         <div class="main-content">
             <div class="container-fluid">
-                <h3 class="page-title">欢迎来到教学管理系统</h3>
+                <h3 class="page-title">选择论文课题</h3>
+                <div class="row">
+                    <div class="col-md-6">
+                        <!-- BASIC TABLE -->
+                        <div class="panel">
+                            <c:choose>
+                            <c:when test="${graduationmanager eq 'selected'}">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">你已经选择了毕业课题</h3>
+                                </div>
+                            </c:when>
+                            <c:otherwise>
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">论文列表</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>序号</th>
+                                            <th>毕业设计题目</th>
+                                            <th>操作</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <c:forEach items="${graduationmanagerList}" var="graduation">
+                                            <tr>
+                                                <td><input type="button" name="graduationDetail" value="${graduation.id}" ></td>
+                                                <td>${graduation.topic}</td>
+                                                <td><input type="button" name="select" id="${graduation.id}" value="选择" ></td>
+                                            </tr>
+                                        </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </c:otherwise>
+                            </c:choose>
+                        </div>
+                        <!-- END BASIC TABLE -->
+                    </div>
+                </div>
             </div>
         </div>
         <!-- END MAIN CONTENT -->
@@ -130,5 +170,13 @@
 <script src="manager/vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="manager/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <script src="manager/scripts/klorofil-common.js"></script>
+<script type="text/javascript">
+    $("input[name='select']").click(function () {
+        var graduationId = this.id;
+        confirm("确认选择当前毕业课题吗？");
+        window.location.href="${basePath}/studentGraduate/doSelect?graduationId="+graduationId;
+    })
+
+</script>
 </body>
 </html>

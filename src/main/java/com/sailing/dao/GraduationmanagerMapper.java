@@ -21,4 +21,10 @@ public interface GraduationmanagerMapper {
     int updateByPrimaryKey(Graduationmanager record);
 
     List<Graduationmanager> selectGraduationmanagerByTeacher(@Param("teacherId")Integer teacherId);
+
+    Graduationmanager selectGraduationmanagerByStudent(@Param("studentId")Integer studentId);
+
+    List<Graduationmanager> selectGraduationmanagerUnselected();
+
+    List<Graduationmanager> selectAllGraduationmanager();
 }

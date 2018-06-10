@@ -39,4 +39,19 @@ public class GraduationmanagerServiceImpl implements GraduationmanagerService {
     public void updateGraduationmanager(Graduationmanager graduationmanager) {
         graduationmanagerMapper.updateByPrimaryKeySelective(graduationmanager);
     }
+
+    @Override
+    public Graduationmanager selectGraduationmanagerByStudent(Integer studentId) {
+        return graduationmanagerMapper.selectGraduationmanagerByStudent(studentId);
+    }
+
+    @Override
+    public List<Graduationmanager> selectGraduationmanagerUnselected() {
+        return graduationmanagerMapper.selectGraduationmanagerUnselected();
+    }
+
+    @Override
+    public List<Graduationmanager> selectAllGraduationmanager() {
+        return graduationmanagerMapper.selectAllGraduationmanager();
+    }
 }

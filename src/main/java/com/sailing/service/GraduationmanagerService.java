@@ -22,4 +22,10 @@ public interface GraduationmanagerService {
     Graduationmanager selectGraduationmanagerById(Integer graduationId);
 
     void updateGraduationmanager(Graduationmanager graduationmanager);
+
+    Graduationmanager selectGraduationmanagerByStudent(Integer id);
+
+    List<Graduationmanager> selectGraduationmanagerUnselected();
+
+    List<Graduationmanager> selectAllGraduationmanager();
 }

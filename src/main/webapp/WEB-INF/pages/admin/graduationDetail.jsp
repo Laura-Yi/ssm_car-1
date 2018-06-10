@@ -123,19 +123,104 @@
                                 <table class="table">
                                     <thead>
                                     <tr>
-                                        <th>序号</th>
-                                        <th>毕业设计题目</th>
-                                        <th>操作</th>
+                                        <th style="width:100px;">课题：</th>
+                                        <th>${graduationmanager.topic}</th>
+                                        <th></th>
+                                        <th></th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <c:forEach items="${graduationmanagerList}" var="graduation">
                                         <tr>
-                                            <td><input type="button" name="graduationDetail" value="${graduation.id}" ></td>
-                                            <td>${graduation.topic}</td>
-                                            <td><input type="button" name="doDel" id="${graduation.id}" value="删除" ></td>
+                                            <td>老师</td>
+                                            <td>${teacher}</td>
+                                            <td></td>
+                                            <td></td>
                                         </tr>
-                                    </c:forEach>
+                                        <tr>
+                                            <td>学生</td>
+                                            <td>${student}</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>描述</td>
+                                            <td>${graduationmanager.description}</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>任务书</td>
+                                            <c:if test="${!empty graduationmanager.bookassign}">
+                                                <form action="${basePath}/teacherGraduate/downfile/任务书?graduationId=${graduationmanager.id}" method="post">
+                                                    <td><input type="submit" value="下载">  <input  type="hidden" name="filePath" value="${graduationmanager.bookassign}" ></td>
+                                                </form>
+                                            </c:if>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>选题报告</td>
+                                            <c:if test="${!empty graduationmanager.topicselectionreport}">
+                                                <form action="${basePath}/teacherGraduate/downfile/选题报告?graduationId=${graduationmanager.id}" method="post">
+                                                    <td><input type="submit" value="下载">  <input  type="hidden" name="filePath" value="${graduationmanager.topicselectionreport}" ></td>
+                                                </form>
+                                            </c:if>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>中期考核表</td>
+                                            <c:if test="${!empty graduationmanager.midcheck}">
+                                                <form action="${basePath}/teacherGraduate/downfile/中期考核表?graduationId=${graduationmanager.id}" method="post">
+                                                    <td><input type="submit" value="下载">  <input  type="hidden" name="filePath" value="${graduationmanager.midcheck}" ></td>
+                                                </form>
+                                            </c:if>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>毕业论文</td>
+                                            <c:if test="${!empty graduationmanager.graduationstudy}">
+                                                <form action="${basePath}/teacherGraduate/downfile/毕业论文?graduationId=${graduationmanager.id}" method="post">
+                                                    <td><input type="submit" value="下载">  <input  type="hidden" name="filePath" value="${graduationmanager.graduationstudy}" ></td>
+                                                </form>
+                                            </c:if>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>评阅表</td>
+                                            <c:if test="${!empty graduationmanager.reviewform}">
+                                                <form action="${basePath}/teacherGraduate/downfile/评阅表?graduationId=${graduationmanager.id}" method="post">
+                                                    <td><input type="submit" value="下载">  <input  type="hidden" name="filePath" value="${graduationmanager.reviewform}" ></td>
+                                                </form>
+                                            </c:if>
+                                        </tr>
+                                        <tr>
+                                            <td>评阅意见表</td>
+                                            <c:if test="${!empty graduationmanager.revieweropinionform}">
+                                                <form action="${basePath}/teacherGraduate/downfile/评阅意见表?graduationId=${graduationmanager.id}" method="post">
+                                                    <td><input type="submit" value="下载">  <input  type="hidden" name="filePath" value="${graduationmanager.revieweropinionform}" ></td>
+                                                </form>
+                                            </c:if>
+                                        </tr>
+                                        <tr>
+                                            <td>评审结果</td>
+                                            <c:choose>
+                                                <c:when test="${empty graduationmanager.resultform}">
+                                                    <form action="${basePath}/teacherGraduate/result?graduationId=${graduationmanager.id}" method="post" >
+                                                        <td><input type="text" name="resultform"/></td>
+                                                        <td><input type="submit"  value="提交评审结果"/></td>
+                                                        <td></td>
+                                                    </form>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <td>${graduationmanager.resultform}</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -161,11 +246,18 @@
 <script src="manager/vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="manager/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <script src="manager/scripts/klorofil-common.js"></script>
-<script type="text/javascript">
-    $("input[name='graduationDetail']").click(function () {
+<script>
+    $("input[name='doDel']").click(function () {
         var graduationId = this.value;
-        window.location.href="${basePath}/teacherGraduate/detail?graduationId="+graduationId;
+        jQuery.ajax({
+            url: 'localhost/student/doDel.action',
+            data: { "studentId": studentId },
+            dataType: "json",
+            type: "POST"
+        });
+        window.localtion.reload();
     })
+
 
 </script>
 </body>

@@ -79,8 +79,8 @@
                         <a href="#graduation" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>毕业论文</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
                         <div id="graduation" class="collapse ">
                             <ul class="nav">
-                                <li><a href="${basePath}/studentGraduate/select" class="">选择课题</a></li>
-                                <li><a href="${basePath}/studentGraduate/detail" class="">论文进展</a></li>
+                                <li><a href="${basePath}/goTeacher/publishGraTopic" class="">发布论文</a></li>
+                                <li><a href="${basePath}/teacherGraduate/show" class="active">自己管理的论文</a></li>
                             </ul>
                         </div>
                     </li>
@@ -111,7 +111,36 @@
         <!-- MAIN CONTENT -->
         <div class="main-content">
             <div class="container-fluid">
-                <h3 class="page-title">欢迎来到教学管理系统</h3>
+                <h3 class="page-title">发布毕业论文课题</h3>
+                <div class="row">
+                    <div class="col-md-6">
+                        <!-- BASIC TABLE -->
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">论文列表</h3>
+                            </div>
+                            <div class="panel-body">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>序号</th>
+                                        <th>毕业设计题目</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <c:forEach items="${graduationmanagerList}" var="graduation">
+                                        <tr>
+                                            <td><input type="button" name="graduationDetail" value="${graduation.id}" ></td>
+                                            <td>${graduation.topic}</td>
+                                        </tr>
+                                    </c:forEach>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- END BASIC TABLE -->
+                    </div>
+                </div>
             </div>
         </div>
         <!-- END MAIN CONTENT -->
@@ -130,5 +159,12 @@
 <script src="manager/vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="manager/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <script src="manager/scripts/klorofil-common.js"></script>
+<script type="text/javascript">
+    $("input[name='graduationDetail']").click(function () {
+        var graduationId = this.value;
+        window.location.href="${basePath}/adminGraduate/detail?graduationId="+graduationId;
+    })
+
+</script>
 </body>
 </html>

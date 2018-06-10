@@ -15,4 +15,6 @@ public interface StudentService {
      * @return
      */
     public Student checkLogin(String username, String password);
+
+    Student selectStudentById(Integer student);
 }

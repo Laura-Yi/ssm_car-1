@@ -15,4 +15,6 @@ public interface TeacherService {
      * @return
      */
     public Teacher checkLogin(String username, String password);
+
+    Teacher selectTeacherById(Integer teacher);
 }

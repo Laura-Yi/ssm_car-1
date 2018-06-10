@@ -25,4 +25,9 @@ public class TeacherServiceImpl implements TeacherService{
             return teacher;
         } else return null;
     }
+
+    @Override
+    public Teacher selectTeacherById(Integer teacher) {
+        return teacherMapper.selectByPrimaryKey(teacher);
+    }
 }

@@ -183,4 +183,24 @@
     where teacher = #{teacherId,jdbcType=INTEGER}
   </select>
 
+  <select id="selectGraduationmanagerByStudent" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from graduationmanager
+    where student = #{studentId,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectGraduationmanagerUnselected" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from graduationmanager
+    where student == -1
+  </select>
+
+  <select id="selectAllGraduationmanager" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from graduationmanager
+  </select>
+
 </mapper>
