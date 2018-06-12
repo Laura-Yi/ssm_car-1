@@ -6,6 +6,7 @@ import com.sailing.service.StudentService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
 *@description: ServiceImpl For Admin
@@ -30,4 +31,11 @@ public class StudentServiceImpl implements StudentService{
     public Student selectStudentById(Integer studentId) {
         return studentMapper.selectByPrimaryKey(studentId);
     }
+
+    @Override
+    public List<Student> selectStudentByIds(List<Integer> studentIds) {
+        return studentMapper.selectSrtpByStudentIds(studentIds);
+    }
+
+
 }

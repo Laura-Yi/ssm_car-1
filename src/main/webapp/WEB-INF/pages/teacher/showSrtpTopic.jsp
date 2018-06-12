@@ -62,9 +62,6 @@
                             <li><a href="#"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
                         </ul>
                     </li>
-                    <!-- <li>
-                        <a class="update-pro" href="#downloads/klorofil-pro-bootstrap-admin-dashboard-template/?utm_source=klorofil&utm_medium=template&utm_campaign=KlorofilPro" title="Upgrade to Pro" target="_blank"><i class="fa fa-rocket"></i> <span>UPGRADE TO PRO</span></a>
-                    </li> -->
                 </ul>
             </div>
         </div>
@@ -80,19 +77,11 @@
                         <div id="graduation" class="collapse ">
                             <ul class="nav">
                                 <li><a href="${basePath}/goTeacher/publishGraTopic" class="">发布论文</a></li>
-                                <li><a href="${basePath}/teacherGraduate/show" class="">自己管理的论文</a></li>
+                                <li><a href="${basePath}/teacherGraduate/show" class="active">自己管理的论文</a></li>
                             </ul>
                         </div>
                     </li>
-                    <li>
-                        <a href="#SRTP" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>SRTP</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-                        <div id="SRTP" class="collapse ">
-                            <ul class="nav">
-                                <li><a href="${basePath}/goTeacher/publishSrtp" class="">发布SRTP</a></li>
-                                <li><a href="${basePath}/teacherSrtp/show" class="">管理自己的SRTP</a></li>
-                            </ul>
-                        </div>
-                    </li>
+                    <li><a href="elements.html" class=""><i class="lnr lnr-code"></i> <span>Elements</span></a></li>
                     <li><a href="charts.html" class=""><i class="lnr lnr-chart-bars"></i> <span>Charts</span></a></li>
                     <li><a href="panels.html" class=""><i class="lnr lnr-cog"></i> <span>Panels</span></a></li>
                     <li><a href="notifications.html" class=""><i class="lnr lnr-alarm"></i> <span>Notifications</span></a></li>
@@ -119,7 +108,38 @@
         <!-- MAIN CONTENT -->
         <div class="main-content">
             <div class="container-fluid">
-                <h3 class="page-title">欢迎来到教学管理系统</h3>
+                <h3 class="page-title">已发布的SRTP课题</h3>
+                <div class="row">
+                    <div class="col-md-6">
+                        <!-- BASIC TABLE -->
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">SRTP列表</h3>
+                            </div>
+                            <div class="panel-body">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>序号</th>
+                                        <th>题目</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <c:forEach items="${srtpmanagerList}" var="srtp">
+                                        <tr>
+                                            <td><input type="button" name="srtpDetail" value="${srtp.id}" ></td>
+                                            <td>${srtp.srtpname}</td>
+                                            <td><input type="button" name="doDel" id="${srtp.id}" value="删除" ></td>
+                                        </tr>
+                                    </c:forEach>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- END BASIC TABLE -->
+                    </div>
+                </div>
             </div>
         </div>
         <!-- END MAIN CONTENT -->
@@ -138,5 +158,16 @@
 <script src="manager/vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="manager/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <script src="manager/scripts/klorofil-common.js"></script>
+<script type="text/javascript">
+    $("input[name='srtpDetail']").click(function () {
+        var graduationId = this.value;
+        window.location.href="${basePath}/teacherSrtp/detail?graduationId="+graduationId;
+    })
+    $("input[name='doDel']").click(function () {
+        var graduationId = this.id;
+        window.location.href="${basePath}/teacherSrtp/doDel?graduationId="+graduationId;
+    })
+
+</script>
 </body>
 </html>

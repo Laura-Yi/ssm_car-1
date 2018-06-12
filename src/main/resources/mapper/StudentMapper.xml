@@ -74,4 +74,15 @@
     from student
     where `name` = #{username,jdbcType=VARCHAR}
   </select>
+
+  <!-- 根据剧典id list查询剧典 -->
+  <select id="selectSrtpByStudentIds" parameterType="java.util.List" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from student where id in
+    <foreach collection="studentIds" item="studentId" open="(" close=")" separator=",">
+      #{studentId}
+    </foreach>
+  </select>
+
 </mapper>

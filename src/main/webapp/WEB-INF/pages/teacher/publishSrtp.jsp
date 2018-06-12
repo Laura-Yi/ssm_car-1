@@ -79,20 +79,12 @@
                         <a href="#graduation" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>毕业论文</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
                         <div id="graduation" class="collapse ">
                             <ul class="nav">
-                                <li><a href="${basePath}/goTeacher/publishGraTopic" class="">发布论文</a></li>
+                                <li><a href="${basePath}/goTeacher/publishGraTopic" class="active">发布论文</a></li>
                                 <li><a href="${basePath}/teacherGraduate/show" class="">自己管理的论文</a></li>
                             </ul>
                         </div>
                     </li>
-                    <li>
-                        <a href="#SRTP" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>SRTP</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-                        <div id="SRTP" class="collapse ">
-                            <ul class="nav">
-                                <li><a href="${basePath}/goTeacher/publishSrtp" class="">发布SRTP</a></li>
-                                <li><a href="${basePath}/teacherSrtp/show" class="">管理自己的SRTP</a></li>
-                            </ul>
-                        </div>
-                    </li>
+                    <li><a href="elements.html" class=""><i class="lnr lnr-code"></i> <span>Elements</span></a></li>
                     <li><a href="charts.html" class=""><i class="lnr lnr-chart-bars"></i> <span>Charts</span></a></li>
                     <li><a href="panels.html" class=""><i class="lnr lnr-cog"></i> <span>Panels</span></a></li>
                     <li><a href="notifications.html" class=""><i class="lnr lnr-alarm"></i> <span>Notifications</span></a></li>
@@ -119,7 +111,38 @@
         <!-- MAIN CONTENT -->
         <div class="main-content">
             <div class="container-fluid">
-                <h3 class="page-title">欢迎来到教学管理系统</h3>
+                <h3 class="page-title">发布SRTP课题</h3>
+                <div class="row">
+                    <div class="col-md-6">
+                        <!-- BASIC TABLE -->
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">SRTP</h3>
+                            </div>
+                            <div class="panel-body">
+                                <form action="${basePath}/teacherSrtp/publish" method="post">
+                                <table class="table">
+                                    <tr>
+                                        <td>SRTP课题</td>
+                                        <td><input name="srtpname" type="text"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>课题描述</td>
+                                        <td><textarea name="srtpdescription" cols="50" rows="3"></textarea></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="submit" value="发布"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>${publicResult}</td>
+                                    </tr>
+                                </table>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- END BASIC TABLE -->
+                    </div>
+                </div>
             </div>
         </div>
         <!-- END MAIN CONTENT -->

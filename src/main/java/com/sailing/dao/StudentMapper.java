@@ -1,7 +1,10 @@
 package com.sailing.dao;
 
 import com.sailing.entity.Student;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface StudentMapper {
@@ -18,4 +21,6 @@ public interface StudentMapper {
     int updateByPrimaryKey(Student record);
 
     Student selectByUsername(String username);
+
+    List<Student> selectSrtpByStudentIds(@Param("studentIds")List<Integer> studentIds);
 }
