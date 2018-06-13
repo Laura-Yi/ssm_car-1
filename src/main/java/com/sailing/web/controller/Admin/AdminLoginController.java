@@ -24,13 +24,12 @@ public class AdminLoginController {
     @Resource
     AdminService adminService;
 
-
-    //登录成功 进入主页
-    @RequestMapping("/home")
+    //登录成功 进入小秘管理页面
+    @RequestMapping("/homepage")
     public String home(HttpServletRequest request) {
+
         return "admin/homepage";
     }
-
 
     //登录验证
     @RequestMapping("/checklogin")

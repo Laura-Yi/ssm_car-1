@@ -5,9 +5,9 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="teacher" jdbcType="INTEGER" property="teacher" />
     <result column="student" jdbcType="INTEGER" property="student" />
-    <result column="
-assignmentBook" jdbcType="VARCHAR" property="
-assignmentbook" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="topic" jdbcType="VARCHAR" property="topic" />
+    <result column="bookAssign" jdbcType="VARCHAR" property="bookassign" />
     <result column="topicSelectionReport" jdbcType="VARCHAR" property="topicselectionreport" />
     <result column="midCheck" jdbcType="VARCHAR" property="midcheck" />
     <result column="graduationStudy" jdbcType="VARCHAR" property="graduationstudy" />
@@ -16,33 +16,34 @@ assignmentbook" />
     <result column="resultForm" jdbcType="VARCHAR" property="resultform" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, teacher, student, 
-assignmentBook, topicSelectionReport, midCheck, graduationStudy, 
-    reviewForm, reviewerOpinionForm, resultForm
+    id, teacher, student, description, topic, bookAssign, topicSelectionReport, midCheck,
+    graduationStudy, reviewForm, reviewerOpinionForm, resultForm
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from graduationmanager
-    where id = #{id,jdbcType=INTEGER}
-  </select>
+  select
+  <include refid="Base_Column_List" />
+  from graduationmanager
+  where id = #{id,jdbcType=INTEGER}
+</select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from graduationmanager
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.sailing.entity.Graduationmanager">
     insert into graduationmanager (id, teacher, student, 
-      
-assignmentBook, topicSelectionReport, 
-      midCheck, graduationStudy, reviewForm, 
-      reviewerOpinionForm, resultForm)
+      description, topic, bookAssign,topicSelectionReport, midCheck, graduationStudy,
+      reviewForm, reviewerOpinionForm, resultForm
+      )
     values (#{id,jdbcType=INTEGER}, #{teacher,jdbcType=INTEGER}, #{student,jdbcType=INTEGER}, 
-      #{
-assignmentbook,jdbcType=VARCHAR}, #{topicselectionreport,jdbcType=VARCHAR}, 
-      #{midcheck,jdbcType=VARCHAR}, #{graduationstudy,jdbcType=VARCHAR}, #{reviewform,jdbcType=VARCHAR}, 
-      #{revieweropinionform,jdbcType=VARCHAR}, #{resultform,jdbcType=VARCHAR})
+      #{description,jdbcType=VARCHAR}, #{topic,jdbcType=VARCHAR}, #{bookassign,jdbcType=VARCHAR},
+      #{topicselectionreport,jdbcType=VARCHAR}, #{midcheck,jdbcType=VARCHAR}, #{graduationstudy,jdbcType=VARCHAR}, 
+      #{reviewform,jdbcType=VARCHAR}, #{revieweropinionform,jdbcType=VARCHAR}, #{resultform,jdbcType=VARCHAR}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.sailing.entity.Graduationmanager">
+  <insert id="insertSelective" parameterType="com.sailing.entity.Graduationmanager" >
+    <selectKey keyProperty="id" resultType="java.lang.Integer" order="AFTER">
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
     insert into graduationmanager
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -54,10 +55,14 @@ assignmentbook,jdbcType=VARCHAR}, #{topicselectionreport,jdbcType=VARCHAR},
       <if test="student != null">
         student,
       </if>
-      <if test="
-assignmentbook != null">
-        
-assignmentBook,
+      <if test="description != null">
+        description,
+      </if>
+      <if test="topic != null">
+        topic,
+      </if>
+      <if test="bookassign != null">
+        bookAssign,
       </if>
       <if test="topicselectionreport != null">
         topicSelectionReport,
@@ -88,10 +93,14 @@ assignmentBook,
       <if test="student != null">
         #{student,jdbcType=INTEGER},
       </if>
-      <if test="
-assignmentbook != null">
-        #{
-assignmentbook,jdbcType=VARCHAR},
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="topic != null">
+        #{topic,jdbcType=VARCHAR},
+      </if>
+      <if test="bookassign != null">
+        #{bookassign,jdbcType=VARCHAR},
       </if>
       <if test="topicselectionreport != null">
         #{topicselectionreport,jdbcType=VARCHAR},
@@ -122,11 +131,14 @@ assignmentbook,jdbcType=VARCHAR},
       <if test="student != null">
         student = #{student,jdbcType=INTEGER},
       </if>
-      <if test="
-assignmentbook != null">
-        
-assignmentBook = #{
-assignmentbook,jdbcType=VARCHAR},
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="topic != null">
+        topic = #{topic,jdbcType=VARCHAR},
+      </if>
+      <if test="bookassign != null">
+        bookAssign = #{bookassign,jdbcType=VARCHAR},
       </if>
       <if test="topicselectionreport != null">
         topicSelectionReport = #{topicselectionreport,jdbcType=VARCHAR},
@@ -153,9 +165,9 @@ assignmentbook,jdbcType=VARCHAR},
     update graduationmanager
     set teacher = #{teacher,jdbcType=INTEGER},
       student = #{student,jdbcType=INTEGER},
-      
-assignmentBook = #{
-assignmentbook,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      topic = #{topic,jdbcType=VARCHAR},
+      bookAssign = #{bookassign,jdbcType=VARCHAR},
       topicSelectionReport = #{topicselectionreport,jdbcType=VARCHAR},
       midCheck = #{midcheck,jdbcType=VARCHAR},
       graduationStudy = #{graduationstudy,jdbcType=VARCHAR},
@@ -164,4 +176,31 @@ assignmentbook,jdbcType=VARCHAR},
       resultForm = #{resultform,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectGraduationmanagerByTeacher" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from graduationmanager
+    where teacher = #{teacherId,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectGraduationmanagerByStudent" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from graduationmanager
+    where student = #{studentId,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectGraduationmanagerUnselected" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from graduationmanager
+    where student == -1
+  </select>
+
+  <select id="selectAllGraduationmanager" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from graduationmanager
+  </select>
+
 </mapper>

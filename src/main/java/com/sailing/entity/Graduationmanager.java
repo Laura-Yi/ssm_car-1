@@ -9,7 +9,11 @@ public class Graduationmanager implements Serializable {
 
     private Integer student;
 
-    private String assignmentbook;
+    private String description;
+
+    private String topic;
+
+    private String bookassign;
 
     private String topicselectionreport;
 
@@ -49,12 +53,28 @@ public class Graduationmanager implements Serializable {
         this.student = student;
     }
 
-    public String getAssignmentbook() {
-        return assignmentbook;
+    public String getDescription() {
+        return description;
     }
 
-    public void setAssignmentbook(String assignmentbook) {
-        this.assignmentbook = assignmentbook;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getTopic() {
+        return topic;
+    }
+
+    public void setTopic(String topic) {
+        this.topic = topic;
+    }
+
+    public String getBookassign() {
+        return bookassign;
+    }
+
+    public void setBookassign(String bookassign) {
+        this.bookassign = bookassign;
     }
 
     public String getTopicselectionreport() {
@@ -114,7 +134,9 @@ public class Graduationmanager implements Serializable {
         sb.append(", id=").append(id);
         sb.append(", teacher=").append(teacher);
         sb.append(", student=").append(student);
-        sb.append(", assignmentbook=").append(assignmentbook);
+        sb.append(", description=").append(description);
+        sb.append(", topic=").append(topic);
+        sb.append(", bookassign=").append(bookassign);
         sb.append(", topicselectionreport=").append(topicselectionreport);
         sb.append(", midcheck=").append(midcheck);
         sb.append(", graduationstudy=").append(graduationstudy);

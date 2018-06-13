@@ -30,7 +30,37 @@ public class MyFileUtil {
 	static int countFiles = 0;// 声明统计文件个数的变量
 	static int countFolders = 0;// 声明统计文件夹的变量
 
-	/* [文件删除] */
+	/**
+	 * 获取短文件名,不带扩展名
+	 * @param fileName
+	 * @return
+	 */
+	public static String getShortName(String fileName){
+		if(fileName != null && fileName.length()>0 && fileName.lastIndexOf(".")>-1){
+			return fileName.substring(0, fileName.lastIndexOf("."));
+		}
+		return fileName;
+	}
+
+	/**
+	 * 获取扩展名,带点
+	 * @param fileName
+	 * @return
+	 */
+	public static String getExtention(String fileName){
+		if(fileName!=null && fileName.length()>0 && fileName.lastIndexOf(".")>-1){
+			return fileName.substring(fileName.lastIndexOf("."));
+		}
+		return "";
+	}
+
+	public static String getLastFile(String path){
+		String filename = path.trim();
+
+		String temp[] = filename.split("\\\\"); /**split里面必须是正则表达式，"\\"的作用是对字符串转义*/
+
+		return temp[temp.length-1];
+	}
 
 	// 验证字符串是否为正确路径名的正则表达式
 	private static String matches = "[A-Za-z]:\\\\[^:?\"><*]*";

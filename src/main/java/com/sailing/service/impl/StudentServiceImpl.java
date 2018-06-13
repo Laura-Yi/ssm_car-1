@@ -1,14 +1,12 @@
 package com.sailing.service.impl;
 
 import com.sailing.dao.StudentMapper;
-import com.sailing.dao.TeacherMapper;
 import com.sailing.entity.Student;
-import com.sailing.entity.Teacher;
 import com.sailing.service.StudentService;
-import com.sailing.service.TeacherService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
 *@description: ServiceImpl For Admin
@@ -28,4 +26,16 @@ public class StudentServiceImpl implements StudentService{
             return student;
         } else return null;
     }
+
+    @Override
+    public Student selectStudentById(Integer studentId) {
+        return studentMapper.selectByPrimaryKey(studentId);
+    }
+
+    @Override
+    public List<Student> selectStudentByIds(List<Integer> studentIds) {
+        return studentMapper.selectSrtpByStudentIds(studentIds);
+    }
+
+
 }

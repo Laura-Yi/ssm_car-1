@@ -5,8 +5,6 @@ import java.io.Serializable;
 public class Teacher implements Serializable {
     private Integer id;
 
-    private String loginname;
-
     private String name;
 
     private String password;
@@ -19,14 +17,6 @@ public class Teacher implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getLoginname() {
-        return loginname;
-    }
-
-    public void setLoginname(String loginname) {
-        this.loginname = loginname;
     }
 
     public String getName() {
@@ -52,7 +42,6 @@ public class Teacher implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", loginname=").append(loginname);
         sb.append(", name=").append(name);
         sb.append(", password=").append(password);
         sb.append(", serialVersionUID=").append(serialVersionUID);

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
@@ -123,7 +123,7 @@
                      <span class="item-text">作为买方</span>                  </a>
                   <!-- START SubMenu item-->
                   <ul class="nav collapse ">
-                     <li>
+                     <li style="background:gray;">
                         <a href="/page/order">
                            <span class="item-text">未完成订单</span>                        </a>                     </li>
                      <li>
@@ -132,10 +132,11 @@
                      </li>
                   </ul>
                </li>
-               <li>
-                  <a href="#" title="Tables" data-toggle="collapse-next" class="has-submenu">
+               <li style="background:gray;">
+                  <a href="#" title="Tables" data-toggle="collapse-next" class="has-submenu"
+                  style="color:white; box-shadow: 0px 1px 10px rgba(0,0,0,.8);">
                      <em class="fa fa-bar-chart-o"></em>
-                     <span class="item-text">作为卖方</span>                  </a>
+                     <span class="item-text" style="font-size:17px;">作为卖方</span>                  </a>
                   <!-- START SubMenu item-->
                   <ul class="nav collapse ">
                      <li>
@@ -145,9 +146,9 @@
                      <li>
                         <a href="/page/check_order">
                            <span class="item-text">订单确认</span>                        </a>                     </li>
-                     <li>
-                        <a href="/page/check_car" >
-                           <span class="item-text">我发布的车辆信息</span>                  </a>
+                     <li style="background:gray;">
+                        <a href="/page/check_car" style="color:white; box-shadow: 0px 1px 10px rgba(0,0,0,.8);">
+                           <span class="item-text" style="font-size:17px;">我发布的车辆信息</span>                  </a>
                      </li>
                   </ul>
                </li>
@@ -184,50 +185,68 @@
       <section>
          <!-- START Page content-->
          <section class="main-content">
-            <h3>密码修改
+            <h3>已发布汽车信息
                <br>
-               <small>请认真填写密码，保护自身账号安全</small>            </h3>
+               <small>可查阅已发布的汽车信息</small>
+            </h3>
             <!-- START panel-->
             <div class="panel panel-default">
-               <div class="panel-heading">基本信息</div>
-               <div class="panel-body">
-                  <form method="post" class="form-horizontal">
-                     <fieldset>
-                     	<div class="form-group">
-                     		<label class="col-sm-2 control-label">初始密码</label>
-                     		<div class="col-sm-4">
-                     			<input type="password" id=init_password class="form-control">
-                     		</div>
-                     	</div>
-                     </fieldset>
-                     
-                      <fieldset>
-                     	<div class="form-group">
-                     		<label class="col-sm-2 control-label">更改密码</label>
-                     		<div class="col-sm-4">
-                     			<input type="password" id="new_password" class="form-control">
-                     		</div>
-                     	</div>
-                     </fieldset>
-                                          
-                     <fieldset>
-                     	<div class="form-group">
-                     		<label class="col-sm-2 control-label">确认密码</label>
-                     		<div class="col-sm-4">
-                     			<input type="password" id="repeat_password" class="form-control">
-                     		</div>
-                     	</div>
-                     </fieldset>
+               <div class="panel-heading">未完成订单
+                  <a href="#" data-perform="panel-dismiss" data-toggle="tooltip" title="Close Panel" class="pull-right">
+                     <em class="fa fa-times"></em>
+                  </a>
+                  <a href="#" data-perform="panel-collapse" data-toggle="tooltip" title="Collapse Panel" class="pull-right">
+                     <em class="fa fa-minus"></em>
+                  </a>
+               </div>
+               <!-- START table-responsive-->
+               <div class="table-responsive">
+                  <table id="table-id" class="table table-bordered table-hover">
+                     <thead>
+                     <tr class="table-th">
+                        <th>汽车编号</th>
+                        <th>名称</th>
+                        <th>配置名</th>
+                        <th>变速箱</th>
+                        <th>发动机</th>
+                        <th>车身结构</th>
+                        <th>车龄</th>
+                        <th>行驶里程</th>
+                        <th>操作</th>
+                     </tr>
+                     <thead>
+                     <tbody id= "table-tbody" class="table-tbody">
+                     <c:forEach items="${graduationmanagerList}" var="graduation">
+                        <tr>
+                           <td>${item.carId}</td>
+                           <td>${graduation.}</td>
+                           <td><a href="/page/details?id=${item.carId}">${item.confName}</a></td>
+                           <td>${item.gearbox}</td>
+                           <td>${item.engine}</td>
+                           <td>${item.bodyStructure}</td>
+                           <td>${item.carAge}</td>
+                           <td>${item.carMileage}</td>
+                           <td><a href="javascript:void(0);"  id="cancel">撤销</a></td>
+                        </tr>
+                     </c:forEach>
+                     </tbody>
+                  </table>
+               </div>
+               <!-- END table-responsive-->
+               <div class="panel-footer">
+                  <div class="row">
+                     <div class="col-lg-2">
+                        <div class="input-group">
 
-                     <fieldset>
-                        <div class="form-group">
-                           <div class="col-sm-4 col-sm-offset-2">
-                              <button type="button" id="updatepswd_button" class="btn btn-primary">提交</button>
-                           </div>
                         </div>
-                     </fieldset>
-                     
-                  </form>
+                     </div>
+                     <div class="col-lg-8"></div>
+                     <div class="col-lg-2">
+                        <div class="input-group">
+                           <p>客服电话：400-828-3499</p>
+                        </div>
+                     </div>
+                  </div>
                </div>
             </div>
             <!-- END panel-->
@@ -269,48 +288,7 @@
    <!-- App Main-->
    <script src="app/js/app.js"></script>
    <!--XXX2-->
-   <script type="text/javascript">
-       $("#updatepswd_button").click(function () {
-           var init_password = $.trim($("#init_password").val());
-           var new_password = $.trim($("#new_password").val());
-           var repeat_password=$.trim($("#repeat_password").val());
-           if (init_password== "") {
-               alert("请输入初始密码！");
-               return false;
-           } else if (new_password == "") {
-               alert("请输入新密码！");
-               return false;
-           } else if(repeat_password==""){
-               alert("请重复新密码！")
-               return false;
-           }else if(repeat_password!=new_password){
-               alert("两次输入的密码不一致！");
-               return false;
-           }
 
-
-           //ajax去服务器端校验
-           var data = {init:init_password,new:new_password,repeat:repeat_password};
-
-           $.ajax({
-               type: "POST",
-               url: "/usercenter/submitpassword",
-               data: data,
-
-               success: function (msg) {
-                   if (msg == "success") {
-                       alert("修改密码成功，请重新登录！");
-                       window.location.href = "/login/login";
-                   }
-                   else if (msg == "fail") {
-                       alert("初始密码错误！");
-                   }
-               }
-           });
-       });
-
-
-   </script>
    <!-- END Scripts-->
 </body>
 

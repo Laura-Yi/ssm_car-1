@@ -24,6 +24,13 @@ public class TeacherLoginController {
     @Resource
     TeacherService teacherService;
 
+    //登录成功 进入小秘管理页面
+    @RequestMapping("/homepage")
+    public String home(HttpServletRequest request) {
+
+        return "teacher/homepage";
+    }
+
     //登录验证
     @RequestMapping("/checklogin")
     @ResponseBody

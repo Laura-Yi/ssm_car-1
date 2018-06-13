@@ -197,14 +197,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
            }
            //ajax去服务器端校验
            var data = {username: username, password: password};
+
            $.ajax({
                type: "POST",
-               url: "../adminLogin/checklogin",
+               url: "/adminLogin/checklogin",
                data: data,
 
                success: function (msg) {
                    if (msg == "success") {
-                       window.location.href = "/adminLogin/home";
+                       window.location.href = "/adminLogin/homepage";
                    }
                    else if (msg == "fail") {
                        alert("用户名或密码错误！");
@@ -262,12 +263,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
            $.ajax({
                type: "POST",
-               url: "../teacherLogin/checklogin",
+               url: "/teacherLogin/checklogin",
                data: data,
 
                success: function (msg) {
                    if (msg == "success") {
-                       window.location.href = "/login/history";
+                       window.location.href = "/teacherLogin/homepage";
                    }
                    else if (msg == "fail") {
                        alert("用户名或密码错误！");
@@ -293,12 +294,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
            $.ajax({
                type: "POST",
-               url: "../studentlogin/checklogin",
+               url: "/studentlogin/checklogin",
                data: data,
 
                success: function (msg) {
                    if (msg == "success") {
-                       window.location.href = "/login/history";
+                       window.location.href = "/studentlogin/homepage";
                    }
                    else if (msg == "fail") {
                        alert("用户名或密码错误！");
