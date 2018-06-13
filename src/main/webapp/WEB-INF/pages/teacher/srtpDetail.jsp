@@ -62,6 +62,9 @@
                             <li><a href="#"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
                         </ul>
                     </li>
+                    <!-- <li>
+                        <a class="update-pro" href="#downloads/klorofil-pro-bootstrap-admin-dashboard-template/?utm_source=klorofil&utm_medium=template&utm_campaign=KlorofilPro" title="Upgrade to Pro" target="_blank"><i class="fa fa-rocket"></i> <span>UPGRADE TO PRO</span></a>
+                    </li> -->
                 </ul>
             </div>
         </div>
@@ -108,31 +111,110 @@
         <!-- MAIN CONTENT -->
         <div class="main-content">
             <div class="container-fluid">
-                <h3 class="page-title">已发布的SRTP课题</h3>
+                <h3 class="page-title">SRTP详情</h3>
                 <div class="row">
                     <div class="col-md-6">
                         <!-- BASIC TABLE -->
                         <div class="panel">
                             <div class="panel-heading">
-                                <h3 class="panel-title">SRTP列表</h3>
+                                <h3 class="panel-title"></h3>
                             </div>
                             <div class="panel-body">
                                 <table class="table">
                                     <thead>
                                     <tr>
-                                        <th>序号</th>
-                                        <th>题目</th>
-                                        <th>操作</th>
+                                        <th style="width:100px;">课题：</th>
+                                        <th>${srtpmanager.srtpname}</th>
+                                        <th></th>
+                                        <th></th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <c:forEach items="${srtpmanagerList}" var="srtp">
                                         <tr>
-                                            <td><input type="button" name="srtpDetail" value="${srtp.id}" ></td>
-                                            <td>${srtp.srtpname}</td>
-                                            <td><input type="button" name="doDel" id="${srtp.id}" value="删除" ></td>
+                                            <td>老师</td>
+                                            <td>${teacher}</td>
+                                            <td></td>
+                                            <td></td>
                                         </tr>
-                                    </c:forEach>
+                                        <tr>
+                                            <td>学生</td>
+                                            <c:forEach items="${studentList}" var="student">
+                                                <td>${student.name}</td>
+                                            </c:forEach>
+                                        </tr>
+                                        <tr>
+                                            <td>srtp描述</td>
+                                            <td>${srtpmanager.srtpdescription}</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>SRTP状态</td>
+                                            <td>${srtpmanager.status}</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>申请表</td>
+                                            <c:if test="${!empty srtpmanager.apllication}">
+                                                <form action="${basePath}/teacherSrtp/downfile/SRTP申请表?srtpId=${srtpmanager.id}" method="post">
+                                                    <td><input type="submit" value="下载">  <input  type="hidden" name="filePath" value="${srtpmanager.apllication}" ></td>
+                                                </form>
+                                            </c:if>
+                                            <form action="${basePath}/teacherSrtp/uploadfile/SRTP申请表?srtpId=${srtpmanager.id}" method="post" enctype="multipart/form-data">
+                                                <td><input type="file" name="file"/></td>
+                                                <td><input type="submit" name="upload" value="上传"/></td>
+                                            </form>
+                                        </tr>
+                                        <tr>
+                                            <td>中期检查表</td>
+                                            <c:if test="${!empty srtpmanager.midCheck}">
+                                                <form action="${basePath}/teacherSrtp/downfile/SRTP中期检查表?srtpId=${srtpmanager.id}" method="post">
+                                                    <td><input type="submit" value="下载">  <input  type="hidden" name="filePath" value="${srtpmanager.midCheck}" ></td>
+                                                </form>
+                                            </c:if>
+                                            <form action="${basePath}/teacherSrtp/uploadfile/SRTP中期检查表?srtpId=${srtpmanager.id}" method="post" enctype="multipart/form-data">
+                                                <td><input type="file" name="file"/></td>
+                                                <td><input type="submit" name="upload" value="上传"/></td>
+                                            </form>
+                                        </tr>
+                                        <tr>
+                                            <td>SRTP结题验收表</td>
+                                            <c:if test="${!empty srtpmanager.complete}">
+                                                <form action="${basePath}/teacherSrtp/downfile/SRTP结题验收表?srtpId=${srtpmanager.id}" method="post">
+                                                    <td><input type="submit" value="下载">  <input  type="hidden" name="filePath" value="${srtpmanager.complete}" ></td>
+                                                </form>
+                                            </c:if>
+                                            <form action="${basePath}/teacherSrtp/uploadfile/SRTP结题验收表?srtpId=${srtpmanager.id}" method="post" enctype="multipart/form-data">
+                                                <td><input type="file" name="file"/></td>
+                                                <td><input type="submit" name="upload" value="上传"/></td>
+                                            </form>
+                                        </tr>
+
+                                        <tr>
+                                            <td>评阅表</td>
+                                            <c:if test="${!empty graduationmanager.reviewform}">
+                                                <form action="${basePath}/teacherGraduate/downfile/SRTP评阅表?graduationId=${graduationmanager.id}" method="post">
+                                                    <td><input type="submit" value="下载">  <input  type="hidden" name="filePath" value="${graduationmanager.reviewform}" ></td>
+                                                </form>
+                                            </c:if>
+                                            <form action="${basePath}/teacherGraduate/uploadfile/SRTP评阅表?graduationId=${graduationmanager.id}" method="post" enctype="multipart/form-data">
+                                                <td><input type="file" name="file"/></td>
+                                                <td><input type="submit" name="upload" value="上传"/></td>
+                                            </form>
+                                        </tr>
+                                        <tr>
+                                            <td>评阅意见表</td>
+                                            <c:if test="${!empty graduationmanager.revieweropinionform}">
+                                                <form action="${basePath}/teacherGraduate/downfile/SRTP评阅意见表?graduationId=${graduationmanager.id}" method="post">
+                                                    <td><input type="submit" value="下载">  <input  type="hidden" name="filePath" value="${graduationmanager.revieweropinionform}" ></td>
+                                                </form>
+                                            </c:if>
+                                            <form action="${basePath}/teacherGraduate/uploadfile/SRTP评阅意见表?graduationId=${graduationmanager.id}" method="post" enctype="multipart/form-data">
+                                                <td><input type="file" name="file"/></td>
+                                                <td><input type="submit" name="upload" value="上传"/></td>
+                                            </form>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -158,16 +240,18 @@
 <script src="manager/vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="manager/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <script src="manager/scripts/klorofil-common.js"></script>
-<script type="text/javascript">
-    $("input[name='srtpDetail']").click(function () {
-        var srtpId = this.value;
-        window.location.href="${basePath}/teacherSrtp/detail?srtpId="+srtpId;
+<script>
+    $("input[name='doDel']").click(function () {
+        var graduationId = this.value;
+        jQuery.ajax({
+            url: 'localhost/student/doDel.action',
+            data: { "studentId": studentId },
+            dataType: "json",
+            type: "POST"
+        });
+        window.localtion.reload();
     })
 
-    $("input[name='doDel']").click(function () {
-        var srtpId = this.id;
-        window.location.href="${basePath}/teacherSrtp/doDel?srtpId="+srtpId;
-    })
 
 </script>
 </body>

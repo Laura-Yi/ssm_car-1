@@ -67,7 +67,7 @@ public class TeacherSrtpController {
             List<Student> studentList = studentService.selectStudentByIds(studentIds);
             model.addAttribute("studentList",studentList);
         }
-        return "teacher/graduationDetail";
+        return "teacher/srtpDetail";
     }
 
     @RequestMapping("doDel")
