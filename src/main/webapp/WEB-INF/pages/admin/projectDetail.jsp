@@ -84,15 +84,7 @@
                             </ul>
                         </div>
                     </li>
-                    <li>
-                        <a href="#SRTP" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>SRTP</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-                        <div id="SRTP" class="collapse ">
-                            <ul class="nav">
-                                <li><a href="${basePath}/goTeacher/publishSrtp" class="">发布SRTP</a></li>
-                                <li><a href="${basePath}/teacherSrtp/show" class="">管理自己的SRTP</a></li>
-                            </ul>
-                        </div>
-                    </li>
+                    <li><a href="elements.html" class=""><i class="lnr lnr-code"></i> <span>Elements</span></a></li>
                     <li><a href="charts.html" class=""><i class="lnr lnr-chart-bars"></i> <span>Charts</span></a></li>
                     <li><a href="panels.html" class=""><i class="lnr lnr-cog"></i> <span>Panels</span></a></li>
                     <li><a href="notifications.html" class=""><i class="lnr lnr-alarm"></i> <span>Notifications</span></a></li>
@@ -119,20 +111,20 @@
         <!-- MAIN CONTENT -->
         <div class="main-content">
             <div class="container-fluid">
-                <h3 class="page-title">SRTP详情</h3>
+                <h3 class="page-title">项目管理</h3>
                 <div class="row">
                     <div class="col-md-6">
                         <!-- BASIC TABLE -->
                         <div class="panel">
                             <div class="panel-heading">
-                                <h3 class="panel-title"></h3>
+                                <h3 class="panel-title">项目详情</h3>
                             </div>
                             <div class="panel-body">
                                 <table class="table">
                                     <thead>
                                     <tr>
-                                        <th style="width:100px;">课题：</th>
-                                        <th>${srtpmanager.srtpname}</th>
+                                        <th style="width:100px;">项目情况</th>
+                                        <th>${projectmanager.projectname}</th>
                                         <th></th>
                                         <th></th>
                                     </tr>
@@ -144,88 +136,31 @@
                                             <td></td>
                                             <td></td>
                                         </tr>
-                                        <tr>
-                                            <td>学生</td>
-                                            <c:forEach items="${studentList}" var="student">
-                                                <td>${student.name}</td>
-                                            </c:forEach>
+                                        <tr>1信息发布 2评选结果 3中期检查 4结题验收动态
+                                            <td>项目状态</td>
+                                            <td>${projectmanager.status}</td>
+                                            <td>
+                                                <c:if test="${projectmanager.status == '信息发布'}">
+                                                <input type="button" name="nextStatus" value="进入下一状态" name="评选结果">
+                                                </c:if>
+                                                <c:if test="${projectmanager.status == '评选结果'}">
+                                                    <input type="button" name="nextStatus" value="进入下一状态" name="中期检查">
+                                                </c:if>
+                                                <c:if test="${projectmanager.status == '中期检查'}">
+                                                    <input type="button" name="nextStatus" value="进入下一状态" name="结题验收">
+                                                </c:if>
+                                            </td>
                                         </tr>
                                         <tr>
-                                            <td>srtp描述</td>
-                                            <td>${srtpmanager.srtpdescription}</td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td>SRTP状态</td>
-                                            <td>${srtpmanager.status}</td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td>申请表</td>
-                                            <c:if test="${!empty srtpmanager.apllication}">
-                                                <form action="${basePath}/teacherSrtp/downfile/SRTP申请表?srtpId=${srtpmanager.id}" method="post">
-                                                    <td><input type="submit" value="下载">  <input  type="hidden" name="filePath" value="${srtpmanager.apllication}" ></td>
-                                                </form>
-                                            </c:if>
-                                            <form action="${basePath}/teacherSrtp/uploadfile/SRTP申请表?srtpId=${srtpmanager.id}" method="post" enctype="multipart/form-data">
-                                                <td><input type="file" name="file"/></td>
-                                                <td><input type="submit" name="upload" value="上传"/></td>
+                                            <td>评审结果</td>
+                                            <form action="${basePath}/teacherProject/addreviewResult?projectId=${projectmanager.id}" method="post" enctype="multipart/form-data">
+                                                <td><input type="text" /></td>
+                                                <td><input type="submit" value="填写"/></td>
                                             </form>
                                         </tr>
                                         <tr>
-                                            <td>中期检查表</td>
-                                            <c:if test="${!empty srtpmanager.midCheck}">
-                                                <form action="${basePath}/teacherSrtp/downfile/SRTP中期检查表?srtpId=${srtpmanager.id}" method="post">
-                                                    <td><input type="submit" value="下载">  <input  type="hidden" name="filePath" value="${srtpmanager.midCheck}" ></td>
-                                                </form>
-                                            </c:if>
-                                            <form action="${basePath}/teacherSrtp/uploadfile/SRTP中期检查表?srtpId=${srtpmanager.id}" method="post" enctype="multipart/form-data">
-                                                <td><input type="file" name="file"/></td>
-                                                <td><input type="submit" name="upload" value="上传"/></td>
-                                            </form>
-                                        </tr>
-                                        <tr>
-                                            <td>SRTP结题验收表</td>
-                                            <c:if test="${!empty srtpmanager.complete}">
-                                                <form action="${basePath}/teacherSrtp/downfile/SRTP结题验收表?srtpId=${srtpmanager.id}" method="post">
-                                                    <td><input type="submit" value="下载">  <input  type="hidden" name="filePath" value="${srtpmanager.complete}" ></td>
-                                                </form>
-                                            </c:if>
-                                            <form action="${basePath}/teacherSrtp/uploadfile/SRTP结题验收表?srtpId=${srtpmanager.id}" method="post" enctype="multipart/form-data">
-                                                <td><input type="file" name="file"/></td>
-                                                <td><input type="submit" name="upload" value="上传"/></td>
-                                            </form>
-                                        </tr>
-
-                                        <tr>
-                                            <td>评阅表</td>
-                                            <c:if test="${!empty graduationmanager.reviewform}">
-                                                <form action="${basePath}/teacherSrtp/downfile/SRTP评阅表?graduationId=${srtpmanager.id}" method="post">
-                                                    <td><input type="submit" value="下载">  <input  type="hidden" name="filePath" value="${graduationmanager.reviewform}" ></td>
-                                                </form>
-                                            </c:if>
-                                            <form action="${basePath}/teacherSrtp/uploadfile/SRTP评阅表?graduationId=${srtpmanager.id}" method="post" enctype="multipart/form-data">
-                                                <td><input type="file" name="file"/></td>
-                                                <td><input type="submit" name="upload" value="上传"/></td>
-                                            </form>
-                                        </tr>
-                                        <tr>
-                                            <td>评阅意见表</td>
-                                            <c:if test="${!empty graduationmanager.revieweropinionform}">
-                                                <form action="${basePath}/teacherSrtp/downfile/SRTP评阅意见表?graduationId=${srtpmanager.id}" method="post">
-                                                    <td><input type="submit" value="下载">  <input  type="hidden" name="filePath" value="${srtpmanager.revieweropinionform}" ></td>
-                                                </form>
-                                            </c:if>
-                                            <form action="${basePath}/teacherSrtp/uploadfile/SRTP评阅意见表?graduationId=${srtpmanager.id}" method="post" enctype="multipart/form-data">
-                                                <td><input type="file" name="file"/></td>
-                                                <td><input type="submit" name="upload" value="上传"/></td>
-                                            </form>
-                                        </tr>
-                                        <tr>
-                                            <td>预算花费：${graduationmanager.cost}</td>
-                                            <td><a href="${basePath}/teacherSrtp/costDetail?srtpId=${srtpmanager.id}">实际花费细节</a></td>
+                                            <td>项目成果</td> 教师填写
+                                            <td>${projectmanager.projectResult}</td>
                                         </tr>
                                     </tbody>
                                 </table>
