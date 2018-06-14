@@ -18,4 +18,12 @@ public interface SrtpmanagerService {
     Srtpmanager selectSrtpById(Integer srtpId);
 
     int deleteSrtpById(Integer srtpId);
+
+    void updateSrtpManager(Srtpmanager srtpmanager);
+
+    Srtpmanager selectSrtpmanagerByStudent(String id);
+
+    List<Srtpmanager> selecSrtpmanagerUnselected();
+
+    List<Srtpmanager> selectALLSrtp();
 }

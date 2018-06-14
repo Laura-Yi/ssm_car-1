@@ -9,11 +9,11 @@ import java.util.List;
 *@author: yichaoqun
 */
 public class StringUtil {
-    public static List<Integer> StringToIntList(String digit){
-        char[] charList = digit.toCharArray();
+    public static List<Integer> StringToIntListByDou(String student) {
+        String[] charList = student.split(",");
         List<Integer> numList = new ArrayList<Integer>();
-        for(char num:charList){
-            numList.add((int)num);
+        for(String num:charList){
+            numList.add(Integer.parseInt(num));
         }
         return numList;
     }

@@ -84,7 +84,15 @@
                             </ul>
                         </div>
                     </li>
-                    <li><a href="elements.html" class=""><i class="lnr lnr-code"></i> <span>Elements</span></a></li>
+                    <li>
+                        <a href="#SRTP" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>SRTP</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+                        <div id="SRTP" class="collapse ">
+                            <ul class="nav">
+                                <li><a href="${basePath}/studentSrtp/select" class="">选择SRTP课题</a></li>
+                                <li><a href="${basePath}/studentSrtp/detail" class="">管理自己的SRTP</a></li>
+                            </ul>
+                        </div>
+                    </li>
                     <li><a href="charts.html" class=""><i class="lnr lnr-chart-bars"></i> <span>Charts</span></a></li>
                     <li><a href="panels.html" class=""><i class="lnr lnr-cog"></i> <span>Panels</span></a></li>
                     <li><a href="notifications.html" class=""><i class="lnr lnr-alarm"></i> <span>Notifications</span></a></li>

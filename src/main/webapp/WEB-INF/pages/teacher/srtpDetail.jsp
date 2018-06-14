@@ -131,25 +131,23 @@
                                 <table class="table">
                                     <thead>
                                     <tr>
-                                        <th style="width:100px;">课题：</th>
+                                        <th>课题：</th>
                                         <th>${srtpmanager.srtpname}</th>
                                         <th></th>
                                         <th></th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>老师</td>
-                                            <td>${teacher}</td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td>学生</td>
-                                            <c:forEach items="${studentList}" var="student">
-                                                <td>${student.name}</td>
-                                            </c:forEach>
-                                        </tr>
+                                    <tr>
+                                        <td>老师</td>
+                                        <td>${teacher}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>学生</td>
+                                        <c:forEach items="${studentList}" var="student">
+                                            <td>${student.name}</td>
+                                        </c:forEach>
+                                    </tr>
                                         <tr>
                                             <td>srtp描述</td>
                                             <td>${srtpmanager.srtpdescription}</td>
@@ -176,9 +174,9 @@
                                         </tr>
                                         <tr>
                                             <td>中期检查表</td>
-                                            <c:if test="${!empty srtpmanager.midCheck}">
+                                            <c:if test="${!empty srtpmanager.midcheck}">
                                                 <form action="${basePath}/teacherSrtp/downfile/SRTP中期检查表?srtpId=${srtpmanager.id}" method="post">
-                                                    <td><input type="submit" value="下载">  <input  type="hidden" name="filePath" value="${srtpmanager.midCheck}" ></td>
+                                                    <td><input type="submit" value="下载">  <input  type="hidden" name="filePath" value="${srtpmanager.midcheck}" ></td>
                                                 </form>
                                             </c:if>
                                             <form action="${basePath}/teacherSrtp/uploadfile/SRTP中期检查表?srtpId=${srtpmanager.id}" method="post" enctype="multipart/form-data">
@@ -198,33 +196,16 @@
                                                 <td><input type="submit" name="upload" value="上传"/></td>
                                             </form>
                                         </tr>
-
                                         <tr>
-                                            <td>评阅表</td>
-                                            <c:if test="${!empty graduationmanager.reviewform}">
-                                                <form action="${basePath}/teacherSrtp/downfile/SRTP评阅表?graduationId=${srtpmanager.id}" method="post">
-                                                    <td><input type="submit" value="下载">  <input  type="hidden" name="filePath" value="${graduationmanager.reviewform}" ></td>
+                                            <td>预算：${srtpmanager.cost}</td>
+                                            <td>
+                                                <form action="${basePath}/teacherSrtp/addYuSuan?srtpId=${srtpmanager.id}" method="post" >
+                                                <td><input type="text" name="YuSuan" value="0"/></td>
+                                                <td><input type="submit" value="修改预算"/></td>
                                                 </form>
-                                            </c:if>
-                                            <form action="${basePath}/teacherSrtp/uploadfile/SRTP评阅表?graduationId=${srtpmanager.id}" method="post" enctype="multipart/form-data">
-                                                <td><input type="file" name="file"/></td>
-                                                <td><input type="submit" name="upload" value="上传"/></td>
-                                            </form>
+                                            </td>
                                         </tr>
                                         <tr>
-                                            <td>评阅意见表</td>
-                                            <c:if test="${!empty graduationmanager.revieweropinionform}">
-                                                <form action="${basePath}/teacherSrtp/downfile/SRTP评阅意见表?graduationId=${srtpmanager.id}" method="post">
-                                                    <td><input type="submit" value="下载">  <input  type="hidden" name="filePath" value="${srtpmanager.revieweropinionform}" ></td>
-                                                </form>
-                                            </c:if>
-                                            <form action="${basePath}/teacherSrtp/uploadfile/SRTP评阅意见表?graduationId=${srtpmanager.id}" method="post" enctype="multipart/form-data">
-                                                <td><input type="file" name="file"/></td>
-                                                <td><input type="submit" name="upload" value="上传"/></td>
-                                            </form>
-                                        </tr>
-                                        <tr>
-                                            <td>预算花费：${graduationmanager.cost}</td>
                                             <td><a href="${basePath}/teacherSrtp/costDetail?srtpId=${srtpmanager.id}">实际花费细节</a></td>
                                         </tr>
                                     </tbody>
@@ -263,6 +244,14 @@
         });
         window.localtion.reload();
     })
+
+
+    $("input[name='YuSuan']").mouseout(function(){
+        var reg = /^[0-9]+$/ ;
+        if (!reg.test(this.value)) {
+            alert("请输入正整数");
+        }
+    });
 
 
 </script>

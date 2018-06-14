@@ -39,4 +39,25 @@ public class SrtpmanagerServiceImpl implements SrtpmanagerService{
     public int deleteSrtpById(Integer srtpId) {
         return srtpmanagerMapper.deleteByPrimaryKey(srtpId);
     }
+
+    @Override
+    public void updateSrtpManager(Srtpmanager srtpmanager) {
+        srtpmanagerMapper.updateByPrimaryKeySelective(srtpmanager);
+    }
+
+    @Override
+    public Srtpmanager selectSrtpmanagerByStudent(String studentId) {
+        studentId = studentId+",";
+        return srtpmanagerMapper.selectSrtpmanagerByStudent(studentId);
+    }
+
+    @Override
+    public List<Srtpmanager> selecSrtpmanagerUnselected() {
+        return srtpmanagerMapper.selecSrtpmanagerUnselected();
+    }
+
+    @Override
+    public List<Srtpmanager> selectALLSrtp() {
+        return srtpmanagerMapper.selectALLSrtp();
+    }
 }

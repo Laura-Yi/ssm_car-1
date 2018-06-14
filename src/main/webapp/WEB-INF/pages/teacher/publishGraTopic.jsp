@@ -79,12 +79,20 @@
                         <a href="#graduation" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>毕业论文</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
                         <div id="graduation" class="collapse ">
                             <ul class="nav">
-                                <li><a href="${basePath}/goTeacher/publishGraTopic" class="active">发布论文</a></li>
+                                <li><a href="${basePath}/goTeacher/publishGraTopic" class="">发布论文</a></li>
                                 <li><a href="${basePath}/teacherGraduate/show" class="">自己管理的论文</a></li>
                             </ul>
                         </div>
                     </li>
-                    <li><a href="elements.html" class=""><i class="lnr lnr-code"></i> <span>Elements</span></a></li>
+                    <li>
+                        <a href="#SRTP" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>SRTP</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+                        <div id="SRTP" class="collapse ">
+                            <ul class="nav">
+                                <li><a href="${basePath}/goTeacher/publishSrtp" class="">发布SRTP</a></li>
+                                <li><a href="${basePath}/teacherSrtp/show" class="">管理自己的SRTP</a></li>
+                            </ul>
+                        </div>
+                    </li>
                     <li><a href="charts.html" class=""><i class="lnr lnr-chart-bars"></i> <span>Charts</span></a></li>
                     <li><a href="panels.html" class=""><i class="lnr lnr-cog"></i> <span>Panels</span></a></li>
                     <li><a href="notifications.html" class=""><i class="lnr lnr-alarm"></i> <span>Notifications</span></a></li>

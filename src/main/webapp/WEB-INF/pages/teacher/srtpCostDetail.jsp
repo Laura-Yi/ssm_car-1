@@ -131,7 +131,7 @@
                                 <table class="table">
                                     <thead>
                                     <tr>
-                                        <th style="width:100px;">课题：</th>
+                                        <th >课题：</th>
                                         <th>${srtpmanager.srtpname}</th>
                                         <th></th>
                                         <th></th>
@@ -144,23 +144,25 @@
                                             <th>具体数目</th>
                                             <th>操作</th>
                                         </tr>
-                                        <tr>
                                         <c:forEach items="${srtpCostList}" var="srtpCost" varStatus="item">
+                                        <tr>
                                             <td>${item.count}</td>
                                             <td>${srtpCost.detail}</td>
                                             <td>${srtpCost.cost}</td>
-                                            <td><input type="button" name="doDel" id="{srtpCost.id}"></td>
-                                        </c:forEach>
+                                            <td><input type="button" value="删除" name="delSrtpCost" id="${srtpCost.id}"></td>
                                         </tr>
+                                        </c:forEach>
                                         <tr>
-                                            <td>srtp实际花费总额：${total}</td>
-                                            <td></td>
-                                            <td>srtp预算花费：${burget}</td>
+                                            <td>srtp实际花费总额：</td>
+                                            <td>${total}</td>
+                                            <td>srtp预算花费:</td>
+                                            <td>${srtpmanager.cost}</td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <form action="${basePath}/teacherSrtp/addCost" method="post" >
-                                                    <td><input type="text" name="upCost"></td>
+                                                <form action="${basePath}/teacherSrtp/addCost?srtpId=${srtpmanager.id}" method="post" >
+                                                    <td>详情：<input type="text" name="detail"></td>
+                                                    <td>花费：<input type="text" name="cost" value="0"></td>
                                                     <td><input type="submit" name="upload" value="添加花费项"/></td>
                                                 </form>
                                             </td>
@@ -192,22 +194,16 @@
 <script src="manager/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <script src="manager/scripts/klorofil-common.js"></script>
 <script type="text/javascript">
-$("input[name='upCost']").blur(function(){
+$("input[name='cost']").mouseout(function(){
     var reg = /^[0-9]+$/ ;
-    if (!reg.test(this.val())) {
+    if (!reg.test(this.value)) {
         alert("请输入正整数");
     }
 });
 
-$("input[name='doDel']").click(function () {
+$("input[name='delSrtpCost']").click(function () {
     var srtpCostId = this.id;
-    jQuery.ajax({
-        url: '${basePath}/teacherSrtp/delCost?srtpCostId='+srtpCostId,
-        data: { "srtpId": srtpId },
-        dataType: "json",
-        type: "POST"
-    });
-    window.localtion.reload();
+    window.location.href="${basePath}/teacherSrtp/delSrtpCost?srtpId=${srtpmanager.id}&srtpCostId="+srtpCostId;
 })
 </script>
 </body>
