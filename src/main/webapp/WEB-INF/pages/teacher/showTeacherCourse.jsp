@@ -44,25 +44,9 @@
             <a href="index.html"><img src="manager/img/logo-dark.png" alt="Klorofil Logo" class="img-responsive logo"></a>
         </div>
         <div class="container-fluid">
-            <div class="navbar-btn">
-                <button type="button" class="btn-toggle-fullwidth"><i class="lnr lnr-arrow-left-circle"></i></button>
-            </div>
-            <form class="navbar-form navbar-left">
-                <div class="input-group">
-                    <input type="text" value="" class="form-control" placeholder="Search dashboard...">
-                    <span class="input-group-btn"><button type="button" class="btn btn-primary">Go</button></span>
-                </div>
-            </form>
-            <div class="navbar-btn navbar-btn-right">
-                <a class="btn btn-success update-pro" href="#downloads/klorofil-pro-bootstrap-admin-dashboard-template/?utm_source=klorofil&utm_medium=template&utm_campaign=KlorofilPro" title="Upgrade to Pro" target="_blank"><i class="fa fa-rocket"></i> <span>UPGRADE TO PRO</span></a>
-            </div>
             <div id="navbar-menu">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
-                            <i class="lnr lnr-alarm"></i>
-                            <span class="badge bg-danger">5</span>
-                        </a>
                         <ul class="dropdown-menu notifications">
                             <li><a href="#" class="notification-item"><span class="dot bg-warning"></span>System space is almost full</a></li>
                             <li><a href="#" class="notification-item"><span class="dot bg-danger"></span>You have 9 unfinished tasks</a></li>
@@ -73,26 +57,11 @@
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="lnr lnr-question-circle"></i> <span>Help</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Basic Use</a></li>
-                            <li><a href="#">Working With Data</a></li>
-                            <li><a href="#">Security</a></li>
-                            <li><a href="#">Troubleshooting</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="manager/img/user.png" class="img-circle" alt="Avatar"> <span>Samuel</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
-                            <li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>
-                            <li><a href="#"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
                             <li><a href="#"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
                         </ul>
                     </li>
-                    <!-- <li>
-                        <a class="update-pro" href="#downloads/klorofil-pro-bootstrap-admin-dashboard-template/?utm_source=klorofil&utm_medium=template&utm_campaign=KlorofilPro" title="Upgrade to Pro" target="_blank"><i class="fa fa-rocket"></i> <span>UPGRADE TO PRO</span></a>
-                    </li> -->
                 </ul>
             </div>
         </div>
@@ -140,29 +109,44 @@
         <!-- MAIN CONTENT -->
         <div class="main-content">
             <div class="container-fluid">
-                <h3 class="page-title">Tables</h3>
+                <h3 class="page-title">已发布的项目课题</h3>
                 <div class="row">
                     <div class="col-md-6">
                         <!-- BASIC TABLE -->
                         <div class="panel">
                             <div class="panel-heading">
-                                <h3 class="panel-title">Basic Table</h3>
+                                <h3 class="panel-title">
+                                    项目列表
+                                    <c:if test="${!empty addResult}">您选择的这个时段已经被占用,请重新选择</c:if>
+                                </h3>
                             </div>
                             <div class="panel-body">
                                 <table class="table">
                                     <thead>
                                     <tr>
-                                        <th>序号</th>
-                                        <th>毕业设计题目</th>
-                                        <th>指导老师</th>
+                                        <th></th>
+                                        <th>课程名称</th>
+                                        <th>老师</th>
+                                        <th>操作</th>
+                                        <th>教室</th>
+                                        <th>时间</th>
+                                        <th></th>
+                                        <th><input id="Auto" type="button" value="自动排课"></th>
+                                        <th>要求</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Steve</td>
-                                        <td>Jobs</td>
-                                    </tr>
+                                    <c:forEach items="${educationplanList}" var="education" varStatus="item">
+                                        <tr>
+                                            <td>${item.count}</td>
+                                            <td>${education.content}</td>
+                                            <form action="${basePath}/teacherSchedule/addRequest?educationplanId=${education.id}" method="post">
+                                            <td><input type="text" value="${education.request}"></td>
+                                            <td><a>课程安排时间</a></td>
+                                            <td><input type="submit" value="填写要求"></input></td>
+                                            </form>
+                                        </tr>
+                                    </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
@@ -188,5 +172,12 @@
 <script src="manager/vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="manager/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <script src="manager/scripts/klorofil-common.js"></script>
+<script type="text/javascript">
+    $("input[name='projectDetail']").click(function () {
+        var projectId = this.value;
+        window.location.href="${basePath}/adminProject/detail?projectId="+projectId;
+    })
+
+</script>
 </body>
 </html>

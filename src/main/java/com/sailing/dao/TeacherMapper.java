@@ -3,6 +3,8 @@ package com.sailing.dao;
 import com.sailing.entity.Teacher;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface TeacherMapper {
     int deleteByPrimaryKey(Integer id);
@@ -18,4 +20,6 @@ public interface TeacherMapper {
     int updateByPrimaryKey(Teacher record);
 
     Teacher selectByUsername(String username);
+
+    List<Teacher> selectAllTeacher();
 }

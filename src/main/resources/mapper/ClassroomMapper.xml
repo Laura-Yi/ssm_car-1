@@ -1,32 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.sailing.dao.TeacherMapper">
-  <resultMap id="BaseResultMap" type="com.sailing.entity.Teacher">
+<mapper namespace="com.sailing.dao.ClassroomMapper">
+  <resultMap id="BaseResultMap" type="com.sailing.entity.Classroom">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="building" jdbcType="VARCHAR" property="building" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, `name`, `password`
+    id, `name`, building
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from teacher
+    from classroom
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from teacher
+    delete from classroom
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.sailing.entity.Teacher">
-    insert into teacher (id, `name`, `password`
+  <insert id="insert" parameterType="com.sailing.entity.Classroom">
+    insert into classroom (id, `name`, building
       )
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{building,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.sailing.entity.Teacher">
-    insert into teacher
+  <insert id="insertSelective" parameterType="com.sailing.entity.Classroom">
+    <selectKey keyProperty="id" resultType="java.lang.Integer" order="AFTER">
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
+    insert into classroom
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
@@ -34,8 +37,8 @@
       <if test="name != null">
         `name`,
       </if>
-      <if test="password != null">
-        `password`,
+      <if test="building != null">
+        building,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -45,38 +48,32 @@
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="password != null">
-        #{password,jdbcType=VARCHAR},
+      <if test="building != null">
+        #{building,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.sailing.entity.Teacher">
-    update teacher
+  <update id="updateByPrimaryKeySelective" parameterType="com.sailing.entity.Classroom">
+    update classroom
     <set>
       <if test="name != null">
         `name` = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="password != null">
-        `password` = #{password,jdbcType=VARCHAR},
+      <if test="building != null">
+        building = #{building,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.sailing.entity.Teacher">
-    update teacher
+  <update id="updateByPrimaryKey" parameterType="com.sailing.entity.Classroom">
+    update classroom
     set `name` = #{name,jdbcType=VARCHAR},
-      `password` = #{password,jdbcType=VARCHAR}
+      building = #{building,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="selectByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectAllClassroom" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
-    from teacher
-    where `name` = #{username,jdbcType=VARCHAR}
-  </select>
-  <select id="selectAllTeacher" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from teacher
+    from classroom
   </select>
 </mapper>

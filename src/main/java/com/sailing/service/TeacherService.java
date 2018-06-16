@@ -2,6 +2,8 @@ package com.sailing.service;
 
 import com.sailing.entity.Teacher;
 
+import java.util.List;
+
 /**
 *@description: Service For Teacher
 *@date: 18:17 2018/6/5
@@ -17,4 +19,6 @@ public interface TeacherService {
     public Teacher checkLogin(String username, String password);
 
     Teacher selectTeacherById(Integer teacher);
+
+    List<Teacher> selectAllTeacher();
 }

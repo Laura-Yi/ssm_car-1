@@ -44,25 +44,9 @@
             <a href="index.html"><img src="manager/img/logo-dark.png" alt="Klorofil Logo" class="img-responsive logo"></a>
         </div>
         <div class="container-fluid">
-            <div class="navbar-btn">
-                <button type="button" class="btn-toggle-fullwidth"><i class="lnr lnr-arrow-left-circle"></i></button>
-            </div>
-            <form class="navbar-form navbar-left">
-                <div class="input-group">
-                    <input type="text" value="" class="form-control" placeholder="Search dashboard...">
-                    <span class="input-group-btn"><button type="button" class="btn btn-primary">Go</button></span>
-                </div>
-            </form>
-            <div class="navbar-btn navbar-btn-right">
-                <a class="btn btn-success update-pro" href="#downloads/klorofil-pro-bootstrap-admin-dashboard-template/?utm_source=klorofil&utm_medium=template&utm_campaign=KlorofilPro" title="Upgrade to Pro" target="_blank"><i class="fa fa-rocket"></i> <span>UPGRADE TO PRO</span></a>
-            </div>
             <div id="navbar-menu">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
-                            <i class="lnr lnr-alarm"></i>
-                            <span class="badge bg-danger">5</span>
-                        </a>
                         <ul class="dropdown-menu notifications">
                             <li><a href="#" class="notification-item"><span class="dot bg-warning"></span>System space is almost full</a></li>
                             <li><a href="#" class="notification-item"><span class="dot bg-danger"></span>You have 9 unfinished tasks</a></li>
@@ -73,20 +57,8 @@
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="lnr lnr-question-circle"></i> <span>Help</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Basic Use</a></li>
-                            <li><a href="#">Working With Data</a></li>
-                            <li><a href="#">Security</a></li>
-                            <li><a href="#">Troubleshooting</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="manager/img/user.png" class="img-circle" alt="Avatar"> <span>Samuel</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
-                            <li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>
-                            <li><a href="#"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
                             <li><a href="#"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
                         </ul>
                     </li>
@@ -140,29 +112,38 @@
         <!-- MAIN CONTENT -->
         <div class="main-content">
             <div class="container-fluid">
-                <h3 class="page-title">Tables</h3>
+                <h3 class="page-title">课程表</h3>
                 <div class="row">
                     <div class="col-md-6">
                         <!-- BASIC TABLE -->
                         <div class="panel">
                             <div class="panel-heading">
-                                <h3 class="panel-title">Basic Table</h3>
+                                <h3 class="panel-title"></h3>
                             </div>
                             <div class="panel-body">
                                 <table class="table">
                                     <thead>
                                     <tr>
-                                        <th>序号</th>
-                                        <th>毕业设计题目</th>
-                                        <th>指导老师</th>
+                                        <th ></th>
+                                        <th>星期一</th>
+                                        <th>星期二</th>
+                                        <th>星期三</th>
+                                        <th>星期四</th>
+                                        <th>星期五</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Steve</td>
-                                        <td>Jobs</td>
-                                    </tr>
+                                        <c:forEach items="${schedulecourseMap}" var="schedulecourse" varStatus="item">
+                                        <tr>
+                                            <td></td>
+                                            <c:forEach items="${schedulecourse.value}" var="schedule" varStatus="item">
+                                                <td>
+                                                    <c:if test="${schedule.building eq null}">无课</c:if>
+                                                    <c:if test="${!empty schedule.building}">${schedule.building}</c:if>
+                                                </td>
+                                            </c:forEach>
+                                        </tr>
+                                        </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
@@ -188,5 +169,18 @@
 <script src="manager/vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="manager/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <script src="manager/scripts/klorofil-common.js"></script>
+<script type="text/javascript">
+$("input[name='cost']").mouseout(function(){
+    var reg = /^[0-9]+$/ ;
+    if (!reg.test(this.value)) {
+        alert("请输入正整数");
+    }
+});
+
+$("input[name='delCost']").click(function () {
+    var projectCostId = this.id;
+    window.location.href="${basePath}/adminProject/delProjectCost?projectId=${projectmanager.id}&projectCostId="+projectCostId;
+})
+</script>
 </body>
 </html>

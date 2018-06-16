@@ -6,6 +6,7 @@ import com.sailing.service.TeacherService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
 *@description: ServiceImpl For Admin
@@ -29,5 +30,10 @@ public class TeacherServiceImpl implements TeacherService{
     @Override
     public Teacher selectTeacherById(Integer teacher) {
         return teacherMapper.selectByPrimaryKey(teacher);
+    }
+
+    @Override
+    public List<Teacher> selectAllTeacher() {
+        return teacherMapper.selectAllTeacher();
     }
 }
