@@ -1,4 +1,4 @@
-package com.sailing.web.controller.other;
+package com.sailing.web.controller;
 
 import com.sailing.service.LoginService;
 import com.sailing.util.ServiceException;
