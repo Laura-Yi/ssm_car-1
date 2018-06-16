@@ -102,6 +102,7 @@
                             </ul>
                         </div>
                     </li>
+                    <li><a href="charts.html" class=""><i class="lnr lnr-chart-bars"></i> <span>Charts</span></a></li>
                     <li><a href="panels.html" class=""><i class="lnr lnr-cog"></i> <span>Panels</span></a></li>
                     <li><a href="notifications.html" class=""><i class="lnr lnr-alarm"></i> <span>Notifications</span></a></li>
                     <li>
@@ -127,31 +128,69 @@
         <!-- MAIN CONTENT -->
         <div class="main-content">
             <div class="container-fluid">
-                <h3 class="page-title">发布毕业论文课题</h3>
+                <h3 class="page-title">项目管理</h3>
                 <div class="row">
                     <div class="col-md-6">
                         <!-- BASIC TABLE -->
                         <div class="panel">
                             <div class="panel-heading">
-                                <h3 class="panel-title">论文列表</h3>
+                                <h3 class="panel-title">项目详情</h3>
                             </div>
                             <div class="panel-body">
                                 <table class="table">
                                     <thead>
                                     <tr>
-                                        <th>序号</th>
-                                        <th>毕业设计题目</th>
-                                        <th>操作</th>
+                                        <th >课题名称：</th>
+                                        <th>${projectmanager.projectname}</th>
+                                        <th></th>
+                                        <th></th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <c:forEach items="${graduationmanagerList}" var="graduation">
                                         <tr>
-                                            <td><input type="button" name="graduationDetail" value="${graduation.id}" ></td>
-                                            <td>${graduation.topic}</td>
-                                            <td><input type="button" name="doDel" id="${graduation.id}" value="删除" ></td>
+                                            <td>项目描述</td>
+                                            <td>${projectmanager.content}</td>
+                                            <td></td>
+                                            <td></td>
                                         </tr>
-                                    </c:forEach>
+                                        <tr>
+                                            <td>老师</td>
+                                            <td>${teacher}</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>项目类型</td>
+                                            <td>${projectmanager.type}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>项目状态</td>
+                                            <td>${projectmanager.status}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>评审结果</td>
+                                            <form action="${basePath}/teacherProject/addreviewResult?projectId=${projectmanager.id}" method="post" >
+                                                <td><input type="text" name="reviewResult" value="${projectmanager.reviewresult}"/></td>
+                                                <td><input type="submit" value="填写"/></td>
+                                            </form>
+                                        </tr>
+                                        <tr>
+                                            <td>项目成果</td>
+                                            <form action="${basePath}/teacherProject/addProjectresult?projectId=${projectmanager.id}" method="post" >
+                                                <td><input type="text" name="projectresult" value="${projectmanager.projectresult}"/></td>
+                                                <td><input type="submit" value="填写"/></td>
+                                            </form>
+                                        </tr>
+                                        <tr>
+                                            <td>项目预算</td>
+                                            <form action="${basePath}/teacherProject/adduget?projectId=${projectmanager.id}" method="post" >
+                                                <td><input type="text" name="buget" value="${projectmanager.buget}"/></td>
+                                                <td><input type="submit" value="填写"/></td>
+                                            </form>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="${basePath}/teacherProject/costDetail?projectId=${projectmanager.id}">实际花费详情</a></td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -177,11 +216,14 @@
 <script src="manager/vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="manager/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <script src="manager/scripts/klorofil-common.js"></script>
-<script type="text/javascript">
-    $("input[name='graduationDetail']").click(function () {
-        var graduationId = this.value;
-        window.location.href="${basePath}/teacherGraduate/detail?graduationId="+graduationId;
-    })
+<script>
+    $("input[name='buget']").mouseout(function(){
+        var reg = /^[0-9]+$/ ;
+        if (!reg.test(this.value)) {
+            alert("请输入正整数");
+        }
+    });
+
 
 </script>
 </body>

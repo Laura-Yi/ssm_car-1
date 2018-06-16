@@ -90,7 +90,15 @@
                             </ul>
                         </div>
                     </li>
-                    <li><a href="charts.html" class=""><i class="lnr lnr-chart-bars"></i> <span>Charts</span></a></li>
+                    <li>
+                        <a href="#Project" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>项目</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+                        <div id="Project" class="collapse ">
+                            <ul class="nav">
+                                <li><a href="${basePath}/teacherProject/publishProject" class="">发布项目</a></li>
+                                <li><a href="${basePath}/teacherProject/show" class="">管理自己的项目</a></li>
+                            </ul>
+                        </div>
+                    </li>
                     <li><a href="panels.html" class=""><i class="lnr lnr-cog"></i> <span>Panels</span></a></li>
                     <li><a href="notifications.html" class=""><i class="lnr lnr-alarm"></i> <span>Notifications</span></a></li>
                     <li>

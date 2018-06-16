@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sailing.dao.ProjectcostMapper">
+  <resultMap id="BaseResultMap" type="com.sailing.entity.Projectcost">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="project" jdbcType="INTEGER" property="project" />
+    <result column="detail" jdbcType="VARCHAR" property="detail" />
+    <result column="cost" jdbcType="INTEGER" property="cost" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, project, detail, cost
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from projectcost
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from projectcost
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sailing.entity.Projectcost">
+    insert into projectcost (id, project, detail, 
+      cost)
+    values (#{id,jdbcType=INTEGER}, #{project,jdbcType=INTEGER}, #{detail,jdbcType=VARCHAR}, 
+      #{cost,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sailing.entity.Projectcost">
+    insert into projectcost
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="project != null">
+        project,
+      </if>
+      <if test="detail != null">
+        detail,
+      </if>
+      <if test="cost != null">
+        cost,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="project != null">
+        #{project,jdbcType=INTEGER},
+      </if>
+      <if test="detail != null">
+        #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="cost != null">
+        #{cost,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sailing.entity.Projectcost">
+    update projectcost
+    <set>
+      <if test="project != null">
+        project = #{project,jdbcType=INTEGER},
+      </if>
+      <if test="detail != null">
+        detail = #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="cost != null">
+        cost = #{cost,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sailing.entity.Projectcost">
+    update projectcost
+    set project = #{project,jdbcType=INTEGER},
+      detail = #{detail,jdbcType=VARCHAR},
+      cost = #{cost,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectprojectCostByProject" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from projectcost
+    where project = #{projectId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteProjectCostByProjectId" parameterType="java.lang.Integer">
+    delete from projectcost
+    where project = #{projectId,jdbcType=INTEGER}
+  </delete>
+</mapper>

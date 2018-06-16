@@ -42,7 +42,7 @@ public class TeacherGraduationController {
     public String publish(HttpSession session, @ModelAttribute Graduationmanager graduationmanager, Model model) throws IOException {
         Teacher teacher = (Teacher)session.getAttribute("teacher");
         graduationmanager.setTeacher(teacher.getId());
-        graduationmanager.setId(-1);
+        graduationmanager.setStudent(-1);
         int result = graduationmanagerService.insert(graduationmanager);
         if (result > 0) {
             model.addAttribute("publicResult","发布成功");

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sailing.dao.ProjectmanagerMapper">
+  <resultMap id="BaseResultMap" type="com.sailing.entity.Projectmanager">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="projectName" jdbcType="VARCHAR" property="projectname" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="reviewResult" jdbcType="VARCHAR" property="reviewresult" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="projectResult" jdbcType="VARCHAR" property="projectresult" />
+    <result column="teacher" jdbcType="INTEGER" property="teacher" />
+    <result column="buget" jdbcType="INTEGER" property="buget" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, projectName, content, reviewResult, `status`, projectResult, teacher, buget, 
+    `type`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from projectmanager
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from projectmanager
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sailing.entity.Projectmanager">
+    insert into projectmanager (id, projectName, content, 
+      reviewResult, `status`, projectResult, 
+      teacher, buget, `type`
+      )
+    values (#{id,jdbcType=INTEGER}, #{projectname,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{reviewresult,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{projectresult,jdbcType=VARCHAR}, 
+      #{teacher,jdbcType=INTEGER}, #{buget,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sailing.entity.Projectmanager">
+    <selectKey keyProperty="id" resultType="java.lang.Integer" order="AFTER">
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
+    insert into projectmanager
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="projectname != null">
+        projectName,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="reviewresult != null">
+        reviewResult,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="projectresult != null">
+        projectResult,
+      </if>
+      <if test="teacher != null">
+        teacher,
+      </if>
+      <if test="buget != null">
+        buget,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="projectname != null">
+        #{projectname,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewresult != null">
+        #{reviewresult,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="projectresult != null">
+        #{projectresult,jdbcType=VARCHAR},
+      </if>
+      <if test="teacher != null">
+        #{teacher,jdbcType=INTEGER},
+      </if>
+      <if test="buget != null">
+        #{buget,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sailing.entity.Projectmanager">
+    update projectmanager
+    <set>
+      <if test="projectname != null">
+        projectName = #{projectname,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewresult != null">
+        reviewResult = #{reviewresult,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="projectresult != null">
+        projectResult = #{projectresult,jdbcType=VARCHAR},
+      </if>
+      <if test="teacher != null">
+        teacher = #{teacher,jdbcType=INTEGER},
+      </if>
+      <if test="buget != null">
+        buget = #{buget,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sailing.entity.Projectmanager">
+    update projectmanager
+    set projectName = #{projectname,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      reviewResult = #{reviewresult,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=VARCHAR},
+      projectResult = #{projectresult,jdbcType=VARCHAR},
+      teacher = #{teacher,jdbcType=INTEGER},
+      buget = #{buget,jdbcType=INTEGER},
+      `type` = #{type,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectProjectmanagerByTeacher" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from projectmanager
+    where teacher = #{teacherId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAllProjectmanager" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from projectmanager
+  </select>
+</mapper>

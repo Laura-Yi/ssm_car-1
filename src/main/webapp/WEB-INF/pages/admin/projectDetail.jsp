@@ -79,12 +79,12 @@
                         <a href="#graduation" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>毕业论文</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
                         <div id="graduation" class="collapse ">
                             <ul class="nav">
-                                <li><a href="${basePath}/goTeacher/publishGraTopic" class="">发布论文</a></li>
-                                <li><a href="${basePath}/teacherGraduate/show" class="active">自己管理的论文</a></li>
+                                <li><a href="${basePath}/adminGraduate/show" class="">查询所有课题</a></li>
                             </ul>
                         </div>
                     </li>
-                    <li><a href="elements.html" class=""><i class="lnr lnr-code"></i> <span>Elements</span></a></li>
+                    <li><a href="${basePath}/adminSrtp/show" class=""><i class="lnr lnr-code"></i> <span>查询所有SRTP</span></a></li>
+                    <li><a href="${basePath}/adminProject/show" class=""><i class="lnr lnr-chart-bars"></i> <span>查询教研/教材/教改项目</span></a></li>
                     <li><a href="charts.html" class=""><i class="lnr lnr-chart-bars"></i> <span>Charts</span></a></li>
                     <li><a href="panels.html" class=""><i class="lnr lnr-cog"></i> <span>Panels</span></a></li>
                     <li><a href="notifications.html" class=""><i class="lnr lnr-alarm"></i> <span>Notifications</span></a></li>
@@ -123,7 +123,7 @@
                                 <table class="table">
                                     <thead>
                                     <tr>
-                                        <th style="width:100px;">项目情况</th>
+                                        <th >课题名称：</th>
                                         <th>${projectmanager.projectname}</th>
                                         <th></th>
                                         <th></th>
@@ -131,36 +131,54 @@
                                     </thead>
                                     <tbody>
                                         <tr>
+                                            <td>项目描述</td>
+                                            <td>${projectmanager.content}</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
                                             <td>老师</td>
                                             <td>${teacher}</td>
                                             <td></td>
                                             <td></td>
                                         </tr>
-                                        <tr>1信息发布 2评选结果 3中期检查 4结题验收动态
+                                        <tr>
+                                            <td>项目类型</td>
+                                            <td>${projectmanager.type}</td>
+                                        </tr>
+                                        <tr>
                                             <td>项目状态</td>
                                             <td>${projectmanager.status}</td>
-                                            <td>
-                                                <c:if test="${projectmanager.status == '信息发布'}">
-                                                <input type="button" name="nextStatus" value="进入下一状态" name="评选结果">
-                                                </c:if>
-                                                <c:if test="${projectmanager.status == '评选结果'}">
-                                                    <input type="button" name="nextStatus" value="进入下一状态" name="中期检查">
-                                                </c:if>
-                                                <c:if test="${projectmanager.status == '中期检查'}">
-                                                    <input type="button" name="nextStatus" value="进入下一状态" name="结题验收">
-                                                </c:if>
-                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>项目状态</td>
+                                            <td>${projectmanager.status}</td>
+                                            <td><input type="button" name="nextStatus" value="调为下一个状态" id="${projectmanager.id}"></td>
+                                            <td></td>
                                         </tr>
                                         <tr>
                                             <td>评审结果</td>
-                                            <form action="${basePath}/teacherProject/addreviewResult?projectId=${projectmanager.id}" method="post" enctype="multipart/form-data">
-                                                <td><input type="text" /></td>
+                                            <form action="${basePath}/adminProject/addreviewResult?projectId=${projectmanager.id}" method="post" >
+                                                <td><input type="text" name="reviewResult" value="${projectmanager.reviewresult}"/></td>
                                                 <td><input type="submit" value="填写"/></td>
                                             </form>
                                         </tr>
                                         <tr>
-                                            <td>项目成果</td> 教师填写
-                                            <td>${projectmanager.projectResult}</td>
+                                            <td>项目成果</td>
+                                            <form action="${basePath}/adminProject/addProjectresult?projectId=${projectmanager.id}" method="post" >
+                                                <td><input type="text" name="projectresult" value="${projectmanager.projectresult}"/></td>
+                                                <td><input type="submit" value="填写"/></td>
+                                            </form>
+                                        </tr>
+                                        <tr>
+                                            <td>项目预算</td>
+                                            <form action="${basePath}/adminProject/adduget?projectId=${projectmanager.id}" method="post" >
+                                                <td><input type="text" name="buget" value="${projectmanager.buget}"/></td>
+                                                <td><input type="submit" value="填写"/></td>
+                                            </form>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="${basePath}/adminProject/costDetail?projectId=${projectmanager.id}">实际花费详情</a></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -188,15 +206,16 @@
 <script src="manager/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <script src="manager/scripts/klorofil-common.js"></script>
 <script>
-    $("input[name='doDel']").click(function () {
-        var graduationId = this.value;
-        jQuery.ajax({
-            url: 'localhost/student/doDel.action',
-            data: { "studentId": studentId },
-            dataType: "json",
-            type: "POST"
-        });
-        window.localtion.reload();
+    $("input[name='buget']").mouseout(function(){
+        var reg = /^[0-9]+$/ ;
+        if (!reg.test(this.value)) {
+            alert("请输入正整数");
+        }
+    });
+
+    $("input[name='nextStatus']").click(function () {
+        var projectId = this.id;
+        window.location.href="${basePath}/adminProject/nextStatus/${projectmanager.status}?projectId="+projectId;
     })
 
 

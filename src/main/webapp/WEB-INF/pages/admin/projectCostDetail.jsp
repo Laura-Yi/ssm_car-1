@@ -79,29 +79,12 @@
                         <a href="#graduation" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>毕业论文</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
                         <div id="graduation" class="collapse ">
                             <ul class="nav">
-                                <li><a href="${basePath}/goTeacher/publishGraTopic" class="">发布论文</a></li>
-                                <li><a href="${basePath}/teacherGraduate/show" class="active">自己管理的论文</a></li>
+                                <li><a href="${basePath}/adminGraduate/show" class="">查询所有课题</a></li>
                             </ul>
                         </div>
                     </li>
-                    <li>
-                        <a href="#SRTP" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>SRTP</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-                        <div id="SRTP" class="collapse ">
-                            <ul class="nav">
-                                <li><a href="${basePath}/goTeacher/publishSrtp" class="">发布SRTP</a></li>
-                                <li><a href="${basePath}/teacherSrtp/show" class="">管理自己的SRTP</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="#Project" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>项目</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-                        <div id="Project" class="collapse ">
-                            <ul class="nav">
-                                <li><a href="${basePath}/teacherProject/publishProject" class="">发布项目</a></li>
-                                <li><a href="${basePath}/teacherProject/show" class="">管理自己的项目</a></li>
-                            </ul>
-                        </div>
-                    </li>
+                    <li><a href="${basePath}/adminSrtp/show" class=""><i class="lnr lnr-code"></i> <span>查询所有SRTP</span></a></li>
+                    <li><a href="${basePath}/adminProject/show" class=""><i class="lnr lnr-chart-bars"></i> <span>查询教研/教材/教改项目</span></a></li>
                     <li><a href="panels.html" class=""><i class="lnr lnr-cog"></i> <span>Panels</span></a></li>
                     <li><a href="notifications.html" class=""><i class="lnr lnr-alarm"></i> <span>Notifications</span></a></li>
                     <li>
@@ -127,31 +110,55 @@
         <!-- MAIN CONTENT -->
         <div class="main-content">
             <div class="container-fluid">
-                <h3 class="page-title">发布毕业论文课题</h3>
+                <h3 class="page-title">SRTP花费详情</h3>
                 <div class="row">
                     <div class="col-md-6">
                         <!-- BASIC TABLE -->
                         <div class="panel">
                             <div class="panel-heading">
-                                <h3 class="panel-title">论文列表</h3>
+                                <h3 class="panel-title"></h3>
                             </div>
                             <div class="panel-body">
                                 <table class="table">
                                     <thead>
                                     <tr>
-                                        <th>序号</th>
-                                        <th>毕业设计题目</th>
-                                        <th>操作</th>
+                                        <th >课题：</th>
+                                        <th>${projectmanager.projectname}</th>
+                                        <th></th>
+                                        <th></th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <c:forEach items="${graduationmanagerList}" var="graduation">
                                         <tr>
-                                            <td><input type="button" name="graduationDetail" value="${graduation.id}" ></td>
-                                            <td>${graduation.topic}</td>
-                                            <td><input type="button" name="doDel" id="${graduation.id}" value="删除" ></td>
+                                            <th>序号</th>
+                                            <th>花费项目</th>
+                                            <th>具体数目</th>
+                                            <th>操作</th>
                                         </tr>
-                                    </c:forEach>
+                                        <c:forEach items="${projectcostList}" var="projectCost" varStatus="item">
+                                        <tr>
+                                            <td>${item.count}</td>
+                                            <td>${projectCost.detail}</td>
+                                            <td>${projectCost.cost}</td>
+                                            <td><input type="button" value="删除" name="delCost" id="${projectCost.id}"></td>
+                                        </tr>
+                                        </c:forEach>
+                                        <tr>
+                                            <td>project实际花费总额：</td>
+                                            <td>${total}</td>
+                                            <td>project预算花费:</td>
+                                            <td>${projectmanager.buget}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <form action="${basePath}/adminProject/addCost?projectId=${projectmanager.id}" method="post" >
+                                                    <td>详情：<input type="text" name="detail"></td>
+                                                    <td>花费：<input type="text" name="cost" value="0"></td>
+                                                    <td><input type="submit" name="upload" value="添加花费项"/></td>
+                                                </form>
+                                            </td>
+                                            <td></td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -178,11 +185,17 @@
 <script src="manager/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <script src="manager/scripts/klorofil-common.js"></script>
 <script type="text/javascript">
-    $("input[name='graduationDetail']").click(function () {
-        var graduationId = this.value;
-        window.location.href="${basePath}/teacherGraduate/detail?graduationId="+graduationId;
-    })
+$("input[name='cost']").mouseout(function(){
+    var reg = /^[0-9]+$/ ;
+    if (!reg.test(this.value)) {
+        alert("请输入正整数");
+    }
+});
 
+$("input[name='delCost']").click(function () {
+    var projectCostId = this.id;
+    window.location.href="${basePath}/adminProject/delProjectCost?projectId=${projectmanager.id}&projectCostId="+projectCostId;
+})
 </script>
 </body>
 </html>

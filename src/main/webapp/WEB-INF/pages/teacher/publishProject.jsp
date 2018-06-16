@@ -79,8 +79,8 @@
                         <a href="#graduation" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>毕业论文</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
                         <div id="graduation" class="collapse ">
                             <ul class="nav">
-                                <li><a href="${basePath}/goTeacher/publishGraTopic" class="">发布论文</a></li>
-                                <li><a href="${basePath}/teacherGraduate/show" class="active">自己管理的论文</a></li>
+                                <li><a href="${basePath}/goTeacher/publishGraTopic" class="active">发布论文</a></li>
+                                <li><a href="${basePath}/teacherGraduate/show" class="">自己管理的论文</a></li>
                             </ul>
                         </div>
                     </li>
@@ -127,33 +127,43 @@
         <!-- MAIN CONTENT -->
         <div class="main-content">
             <div class="container-fluid">
-                <h3 class="page-title">发布毕业论文课题</h3>
+                <h3 class="page-title">发布项目</h3>
                 <div class="row">
                     <div class="col-md-6">
                         <!-- BASIC TABLE -->
                         <div class="panel">
                             <div class="panel-heading">
-                                <h3 class="panel-title">论文列表</h3>
+                                <h3 class="panel-title">项目</h3>
                             </div>
                             <div class="panel-body">
+                                <form action="${basePath}/teacherProject/publish" method="post">
                                 <table class="table">
-                                    <thead>
                                     <tr>
-                                        <th>序号</th>
-                                        <th>毕业设计题目</th>
-                                        <th>操作</th>
+                                        <td>项目课题</td>
+                                        <td><input name="projectname" type="text"></td>
                                     </tr>
-                                    </thead>
-                                    <tbody>
-                                    <c:forEach items="${graduationmanagerList}" var="graduation">
-                                        <tr>
-                                            <td><input type="button" name="graduationDetail" value="${graduation.id}" ></td>
-                                            <td>${graduation.topic}</td>
-                                            <td><input type="button" name="doDel" id="${graduation.id}" value="删除" ></td>
-                                        </tr>
-                                    </c:forEach>
-                                    </tbody>
+                                    <tr>
+                                        <td>项目描述</td>
+                                        <td><textarea name="content" cols="50" rows="3"></textarea></td>
+                                    </tr>
+                                    <tr>
+                                        <td>项目类型</td>
+                                        <td>
+                                            <select name="type">
+                                                <option value="教改"  selected="selected">教改</option>
+                                                <option value="教研"  selected="selected">教研</option>
+                                                <option value="教材"  selected="selected">教材</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="submit" value="发布"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>${publicResult}</td>
+                                    </tr>
                                 </table>
+                                </form>
                             </div>
                         </div>
                         <!-- END BASIC TABLE -->
@@ -177,12 +187,5 @@
 <script src="manager/vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="manager/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <script src="manager/scripts/klorofil-common.js"></script>
-<script type="text/javascript">
-    $("input[name='graduationDetail']").click(function () {
-        var graduationId = this.value;
-        window.location.href="${basePath}/teacherGraduate/detail?graduationId="+graduationId;
-    })
-
-</script>
 </body>
 </html>

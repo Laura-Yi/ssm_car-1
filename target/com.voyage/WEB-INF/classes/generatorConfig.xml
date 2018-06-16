@@ -47,13 +47,13 @@
              enableUpdateByExample="false" />
     <table schema="managersystem" tableName="schedulecourse"  enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
              enableUpdateByExample="false" />-->
-    <table schema="managersystem" tableName="srtpmanager"  enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-             enableUpdateByExample="false" />
-    <table schema="managersystem" tableName="srtpcost"  enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-             enableUpdateByExample="false" />
-    <!--<table schema="managersystem" tableName="student"  enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-             enableUpdateByExample="false" />
-    <table schema="managersystem" tableName="teacher"  enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+    <!--<table schema="managersystem" tableName="srtpmanager"  enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
              enableUpdateByExample="false" />-->
+    <!--<table schema="managersystem" tableName="srtpcost"  enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+             enableUpdateByExample="false" />-->
+    <table schema="managersystem" tableName="projectcost"  enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+             enableUpdateByExample="false" />
+    <table schema="managersystem" tableName="projectmanager"  enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+             enableUpdateByExample="false" />
 </context>
 </generatorConfiguration>

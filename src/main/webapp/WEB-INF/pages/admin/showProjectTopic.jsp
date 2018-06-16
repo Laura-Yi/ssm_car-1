@@ -62,9 +62,6 @@
                             <li><a href="#"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
                         </ul>
                     </li>
-                    <!-- <li>
-                        <a class="update-pro" href="#downloads/klorofil-pro-bootstrap-admin-dashboard-template/?utm_source=klorofil&utm_medium=template&utm_campaign=KlorofilPro" title="Upgrade to Pro" target="_blank"><i class="fa fa-rocket"></i> <span>UPGRADE TO PRO</span></a>
-                    </li> -->
                 </ul>
             </div>
         </div>
@@ -79,29 +76,12 @@
                         <a href="#graduation" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>毕业论文</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
                         <div id="graduation" class="collapse ">
                             <ul class="nav">
-                                <li><a href="${basePath}/goTeacher/publishGraTopic" class="">发布论文</a></li>
-                                <li><a href="${basePath}/teacherGraduate/show" class="active">自己管理的论文</a></li>
+                                <li><a href="${basePath}/adminGraduate/show" class="">查询所有课题</a></li>
                             </ul>
                         </div>
                     </li>
-                    <li>
-                        <a href="#SRTP" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>SRTP</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-                        <div id="SRTP" class="collapse ">
-                            <ul class="nav">
-                                <li><a href="${basePath}/goTeacher/publishSrtp" class="">发布SRTP</a></li>
-                                <li><a href="${basePath}/teacherSrtp/show" class="">管理自己的SRTP</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="#Project" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>项目</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-                        <div id="Project" class="collapse ">
-                            <ul class="nav">
-                                <li><a href="${basePath}/teacherProject/publishProject" class="">发布项目</a></li>
-                                <li><a href="${basePath}/teacherProject/show" class="">管理自己的项目</a></li>
-                            </ul>
-                        </div>
-                    </li>
+                    <li><a href="${basePath}/adminSrtp/show" class=""><i class="lnr lnr-code"></i> <span>查询所有SRTP</span></a></li>
+                    <li><a href="${basePath}/adminProject/show" class=""><i class="lnr lnr-chart-bars"></i> <span>查询教研/教材/教改项目</span></a></li>
                     <li><a href="panels.html" class=""><i class="lnr lnr-cog"></i> <span>Panels</span></a></li>
                     <li><a href="notifications.html" class=""><i class="lnr lnr-alarm"></i> <span>Notifications</span></a></li>
                     <li>
@@ -127,29 +107,31 @@
         <!-- MAIN CONTENT -->
         <div class="main-content">
             <div class="container-fluid">
-                <h3 class="page-title">发布毕业论文课题</h3>
+                <h3 class="page-title">已发布的项目课题</h3>
                 <div class="row">
                     <div class="col-md-6">
                         <!-- BASIC TABLE -->
                         <div class="panel">
                             <div class="panel-heading">
-                                <h3 class="panel-title">论文列表</h3>
+                                <h3 class="panel-title">项目列表</h3>
                             </div>
                             <div class="panel-body">
                                 <table class="table">
                                     <thead>
                                     <tr>
                                         <th>序号</th>
-                                        <th>毕业设计题目</th>
+                                        <th>课题</th>
+                                        <th>类型</th>
                                         <th>操作</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <c:forEach items="${graduationmanagerList}" var="graduation">
+                                    <c:forEach items="${projectmanagerList}" var="project">
                                         <tr>
-                                            <td><input type="button" name="graduationDetail" value="${graduation.id}" ></td>
-                                            <td>${graduation.topic}</td>
-                                            <td><input type="button" name="doDel" id="${graduation.id}" value="删除" ></td>
+                                            <td><input type="button" name="projectDetail" value="${project.id}" ></td>
+                                            <td>${project.projectname}</td>
+                                            <td>${project.status}</td>
+                                            <td><input type="button" name="doDel" id="${project.id}" value="删除" ></td>
                                         </tr>
                                     </c:forEach>
                                     </tbody>
@@ -178,9 +160,14 @@
 <script src="manager/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <script src="manager/scripts/klorofil-common.js"></script>
 <script type="text/javascript">
-    $("input[name='graduationDetail']").click(function () {
-        var graduationId = this.value;
-        window.location.href="${basePath}/teacherGraduate/detail?graduationId="+graduationId;
+    $("input[name='projectDetail']").click(function () {
+        var projectId = this.value;
+        window.location.href="${basePath}/adminProject/detail?projectId="+projectId;
+    })
+
+    $("input[name='doDel']").click(function () {
+        var projectId = this.id;
+        window.location.href="${basePath}/adminProject/doDel?projectId="+projectId;
     })
 
 </script>
