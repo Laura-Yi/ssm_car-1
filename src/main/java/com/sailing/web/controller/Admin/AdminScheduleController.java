@@ -150,11 +150,20 @@ public class AdminScheduleController {
         Integer classroomId = Integer.parseInt(request.getParameter("classroomId"));
         List<Schedulecourse> schedulecourseList= schedulecourseService.selectScheduleByClassId(classroomId);
         List<Schedulecourse> schedulecourseList1 = new ArrayList<Schedulecourse>();
-
         List<Schedulecourse> schedulecourseList2 = new ArrayList<Schedulecourse>();
         List<Schedulecourse> schedulecourseList3 = new ArrayList<Schedulecourse>();
         List<Schedulecourse> schedulecourseList4 = new ArrayList<Schedulecourse>();
         List<Schedulecourse> schedulecourseList5 = new ArrayList<Schedulecourse>();
+        for(int k = 0;k<25;k++){
+            switch (k%5){
+                case 0:schedulecourseList1.add(schedulecourseList.get(k));break;
+                case 1:schedulecourseList2.add(schedulecourseList.get(k));break;
+                case 2:schedulecourseList3.add(schedulecourseList.get(k));break;
+                case 3:schedulecourseList4.add(schedulecourseList.get(k));break;
+                case 4:schedulecourseList5.add(schedulecourseList.get(k));break;
+            }
+        }
+       /* switch ()
         int i=0;
         for(;i<5;i++){
             schedulecourseList1.add(schedulecourseList.get(i));
@@ -170,7 +179,7 @@ public class AdminScheduleController {
         }
         for(;i<25;i++){
             schedulecourseList5.add(schedulecourseList.get(i));
-        }
+        }*/
         Map<String,List<Schedulecourse>> schedulecourseMap = new HashMap<String,List<Schedulecourse>>();
         schedulecourseMap.put("1",schedulecourseList1);
         schedulecourseMap.put("2",schedulecourseList2);

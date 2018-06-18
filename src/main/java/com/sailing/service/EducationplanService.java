@@ -17,4 +17,7 @@ public interface EducationplanService {
     Educationplan selectEducationplanById(Integer educationplanId);
 
     List<Educationplan> selectEducationplanByTeacher(Integer teacher);
+
+    public void update(Educationplan educationplan);
+
 }

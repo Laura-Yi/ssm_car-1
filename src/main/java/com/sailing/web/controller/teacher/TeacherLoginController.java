@@ -39,6 +39,14 @@ public class TeacherLoginController {
         if (teacher != null) {
             session.setAttribute("teacher",teacher);
             return "success";
+
         } else { return "fail";}
     }
+
+    @RequestMapping("/logout")
+    public String logout(HttpSession session){
+        session.invalidate();
+        return "login-multi";
+    }
+
 }

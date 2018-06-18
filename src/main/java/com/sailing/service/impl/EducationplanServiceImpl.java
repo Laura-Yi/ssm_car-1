@@ -39,4 +39,9 @@ public class EducationplanServiceImpl implements EducationplanService{
     public List<Educationplan> selectEducationplanByTeacher(Integer teacher) {
         return educationplanMapper.selectEducationplanByTeacher(teacher);
     }
+
+    @Override
+    public void update(Educationplan educationplan) {
+        educationplanMapper.updateByPrimaryKeySelective(educationplan);
+    }
 }

@@ -77,5 +77,9 @@ public class SchedulecourseServiceImpl implements SchedulecourseService {
         return schedulecourseMapper.selectScheduleByClassAndTime(classroom,time);
     }
 
+    @Override
+    public Schedulecourse selectScheduleByeducationId(Integer educationplanId) {
+        return schedulecourseMapper.selectScheduleByeducationId(educationplanId);
+    }
 
 }

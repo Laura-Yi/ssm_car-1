@@ -38,82 +38,7 @@
 <body>
 <!-- WRAPPER -->
 <div id="wrapper">
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="brand">
-            <a href="index.html"><img src="manager/img/logo-dark.png" alt="Klorofil Logo" class="img-responsive logo"></a>
-        </div>
-        <div class="container-fluid">
-            <div id="navbar-menu">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <ul class="dropdown-menu notifications">
-                            <li><a href="#" class="notification-item"><span class="dot bg-warning"></span>System space is almost full</a></li>
-                            <li><a href="#" class="notification-item"><span class="dot bg-danger"></span>You have 9 unfinished tasks</a></li>
-                            <li><a href="#" class="notification-item"><span class="dot bg-success"></span>Monthly report is available</a></li>
-                            <li><a href="#" class="notification-item"><span class="dot bg-warning"></span>Weekly meeting in 1 hour</a></li>
-                            <li><a href="#" class="notification-item"><span class="dot bg-success"></span>Your request has been approved</a></li>
-                            <li><a href="#" class="more">See all notifications</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="manager/img/user.png" class="img-circle" alt="Avatar"> <span>Samuel</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
-                        </ul>
-                    </li>
-                    <!-- <li>
-                        <a class="update-pro" href="#downloads/klorofil-pro-bootstrap-admin-dashboard-template/?utm_source=klorofil&utm_medium=template&utm_campaign=KlorofilPro" title="Upgrade to Pro" target="_blank"><i class="fa fa-rocket"></i> <span>UPGRADE TO PRO</span></a>
-                    </li> -->
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <!-- END NAVBAR -->
-    <!-- LEFT SIDEBAR -->
-    <div id="sidebar-nav" class="sidebar">
-        <div class="sidebar-scroll">
-            <nav>
-                <ul class="nav">
-                    <li>
-                        <a href="#graduation" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>毕业论文</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-                        <div id="graduation" class="collapse ">
-                            <ul class="nav">
-                                <li><a href="${basePath}/goTeacher/publishGraTopic" class="">发布论文</a></li>
-                                <li><a href="${basePath}/teacherGraduate/show" class="active">自己管理的论文</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="#SRTP" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>SRTP</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-                        <div id="SRTP" class="collapse ">
-                            <ul class="nav">
-                                <li><a href="${basePath}/studentSrtp/select" class="">选择SRTP课题</a></li>
-                                <li><a href="${basePath}/studentSrtp/detail" class="">管理自己的SRTP</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li><a href="charts.html" class=""><i class="lnr lnr-chart-bars"></i> <span>Charts</span></a></li>
-                    <li><a href="panels.html" class=""><i class="lnr lnr-cog"></i> <span>Panels</span></a></li>
-                    <li><a href="notifications.html" class=""><i class="lnr lnr-alarm"></i> <span>Notifications</span></a></li>
-                    <li>
-                        <a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>Pages</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-                        <div id="subPages" class="collapse ">
-                            <ul class="nav">
-                                <li><a href="page-profile.html" class="">Profile</a></li>
-                                <li><a href="page-login.html" class="">Login</a></li>
-                                <li><a href="page-lockscreen.html" class="">Lockscreen</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li><a href="tables.html" class=""><i class="lnr lnr-dice"></i> <span>Tables</span></a></li>
-                    <li><a href="typography.html" class=""><i class="lnr lnr-text-format"></i> <span>Typography</span></a></li>
-                    <li><a href="icons.html" class=""><i class="lnr lnr-linearicons"></i> <span>Icons</span></a></li>
-                </ul>
-            </nav>
-        </div>
-    </div>
-    <!-- END LEFT SIDEBAR -->
+    <jsp:include page="studentHeader.jsp"/>
     <!-- MAIN -->
     <div class="main">
         <!-- MAIN CONTENT -->
@@ -124,30 +49,29 @@
                     <div class="col-md-6">
                         <!-- BASIC TABLE -->
                         <div class="panel">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"></h3>
-                            </div>
-                            <div class="panel-body">
-                                <table class="table">
-                                    <thead>
-                                    <tr>
-                                        <th>课题：</th>
-                                        <th>${srtpmanager.srtpname}</th>
-                                        <th></th>
-                                        <th></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>老师</td>
-                                        <td>${teacher}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>学生</td>
-                                        <c:forEach items="${studentList}" var="student">
-                                            <td>${student.name}</td>
-                                        </c:forEach>
-                                    </tr>
+                            <c:if test="${select eq 'selected'}">
+                                <div class="panel-body">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>课题：</th>
+                                            <th>${srtpmanager.srtpname}</th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>老师</td>
+                                            <td>${teacher.name}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>学生</td><td>
+                                            <c:forEach items="${studentList}" var="student">
+                                                ${student.name} ;
+                                            </c:forEach>
+                                        </td>
+                                        </tr>
                                         <tr>
                                             <td>srtp描述</td>
                                             <td>${srtpmanager.srtpdescription}</td>
@@ -200,17 +124,23 @@
                                             <td>预算：${srtpmanager.cost}</td>
                                             <td>
                                                 <form action="${basePath}/studentSrtp/addYuSuan?srtpId=${srtpmanager.id}" method="post" >
-                                                <td><input type="text" name="YuSuan" value="0"/></td>
-                                                <td><input type="submit" value="修改预算"/></td>
-                                                </form>
+                                            <td><input type="text" name="YuSuan" value="0"/></td>
+                                            <td><input type="submit" value="修改预算"/></td>
+                                            </form>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td><a href="${basePath}/studentSrtp/costDetail?srtpId=${srtpmanager.id}">实际花费细节</a></td>
                                         </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </c:if>
+                            <c:if test="${select eq 'unselected'}">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">还没有选择课题</h3>
+                                </div>
+                            </c:if>
                         </div>
                         <!-- END BASIC TABLE -->
                     </div>

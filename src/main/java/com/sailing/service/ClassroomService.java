@@ -13,4 +13,6 @@ public interface ClassroomService {
     List<Classroom> selectAllClassroom();
 
     void insert(Classroom classroom);
+
+    Classroom selectClassroomById(Integer classroom);
 }

@@ -61,6 +61,7 @@
     <mvc:resources mapping="/resources/**" location="/resources/"/>
 
 
+
     <!-- 默认的视图解析器 在上边的解析错误时使用 (默认使用html)- -->
     <bean id="defaultViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
           p:order="1">
@@ -82,6 +83,9 @@
         <property name="maxUploadSize" value="10485760000"></property>
         <property name="maxInMemorySize" value="40960"></property>
     </bean>
+
+
+
 
     <!--&lt;!&ndash; 注册属性编辑器  11&ndash;&gt;-->
     <!--<bean id="customPropertyEditor" class="com.sailing.web.controller.propertyeditor.CustomPropertyEditor"></bean>-->

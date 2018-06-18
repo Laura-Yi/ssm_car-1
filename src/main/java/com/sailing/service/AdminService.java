@@ -15,4 +15,8 @@ public interface AdminService {
      * @return
      */
     public Admin checkLogin(String username, String password);
+
+    Admin selectAdminByUsername(String username);
+
+    void insert(String username, String s);
 }

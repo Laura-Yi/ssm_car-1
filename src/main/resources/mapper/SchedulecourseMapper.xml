@@ -119,4 +119,10 @@
     from schedulecourse
     where classroom = #{classroom,jdbcType=INTEGER} and time = #{time,jdbcType=INTEGER}
   </select>
+  <select id="selectScheduleByeducationId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from schedulecourse
+    where educationplan = #{educationplan,jdbcType=INTEGER}
+  </select>
 </mapper>

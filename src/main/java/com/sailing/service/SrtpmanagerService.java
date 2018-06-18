@@ -27,3 +27,4 @@ public interface SrtpmanagerService {
 
     List<Srtpmanager> selectALLSrtp();
 }
+

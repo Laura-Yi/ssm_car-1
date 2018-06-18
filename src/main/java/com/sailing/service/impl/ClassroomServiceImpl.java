@@ -28,4 +28,9 @@ public class ClassroomServiceImpl implements ClassroomService{
     public void insert(Classroom classroom) {
         classroomMapper.insertSelective(classroom);
     }
+
+    @Override
+    public Classroom selectClassroomById(Integer classroom) {
+        return classroomMapper.selectByPrimaryKey(classroom);
+    }
 }

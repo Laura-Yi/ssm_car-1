@@ -49,7 +49,7 @@ public class StudentSrtpController {
         if(srtpmanager != null && !"".equals(srtpmanager)){
             model.addAttribute("srtpmanager","selected");
         }else{
-            List<Srtpmanager> srtpmanagerList = srtpmanagerService.selecSrtpmanagerUnselected();
+            List<Srtpmanager> srtpmanagerList = srtpmanagerService.selectALLSrtp();
             model.addAttribute("srtpmanagerList",srtpmanagerList);
             model.addAttribute("srtpmanager","unselected");
         }
@@ -78,7 +78,7 @@ public class StudentSrtpController {
             Teacher teacher = teacherService.selectTeacherById(srtpmanager.getTeacher());
             List<Integer> studentIds = StringUtil.StringToIntListByDou(srtpmanager.getStudent());
             List<Student> studentList = studentService.selectStudentByIds(studentIds);
-            model.addAttribute("teacher",teacher.getName());
+            model.addAttribute("teacher",teacher);
             model.addAttribute("srtpmanager",srtpmanager);
             model.addAttribute("studentList",studentList);
             model.addAttribute("select","selected");

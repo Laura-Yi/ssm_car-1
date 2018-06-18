@@ -78,11 +78,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                <!-- START panel-->
                <div class="panel radius-clear b0 shadow-clear">
-                  <div class="panel-heading radius-clear"><a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="text-muted btn-block text-center">新用户注册GO</a>
+                  <div class="panel-heading radius-clear"><a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="text-muted btn-block text-center">新用户注册GO${registerresult}</a>
                   </div>
                   <div id="collapseTwo" class="panel-collapse collapse">
                      <div class="panel-body">
-                        <form role="form" id="regform" class="mb-lg" method="post" action="${basePath}/register?action=register">
+                        <form role="form" id="regform" class="mb-lg" method="post" action="${basePath}/adminLogin/register">
                            <div class="form-group has-feedback">
                               <label for="signupInputName">用户名</label>
                               <input id="signupInputName" name="username" type="name" placeholder="字母数字组成，字母开头，8-15位" class="form-control">
@@ -164,6 +164,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <!--验证码scrips-->
    <script src="js/login.js"></script>
    <script>
+   if(${!empty registerresult}){
+       alert(${registerresult});
+   }
+
 
 	window.addEventListener('load',function(){
 

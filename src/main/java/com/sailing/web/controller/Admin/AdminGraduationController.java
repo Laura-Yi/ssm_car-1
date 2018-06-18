@@ -56,4 +56,17 @@ public class AdminGraduationController {
         return "admin/graduationDetail";
     }
 
+
+    @RequestMapping("/result")
+    public  String result(HttpServletRequest request,Model model,String resultform){
+        Integer graduationId = Integer.parseInt(request.getParameter("graduationId"));
+        Graduationmanager graduationmanager = new Graduationmanager();
+        graduationmanager.setId(graduationId);
+        graduationmanager.setResultform(resultform);
+        graduationmanagerService.updateGraduationmanager(graduationmanager);
+        return "redirect:/adminGraduate/detail?graduationId="+graduationId;
+    }
+
+
+
 }

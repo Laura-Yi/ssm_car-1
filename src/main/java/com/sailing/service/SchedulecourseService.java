@@ -24,4 +24,6 @@ public interface SchedulecourseService {
     List<Schedulecourse> selectScheduleByClassId(Integer classroomId);
 
     Schedulecourse selectScheduleByClassAndTime(Integer classroom, Integer time);
+
+    Schedulecourse selectScheduleByeducationId(Integer educationplanId);
 }

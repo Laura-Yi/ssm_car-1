@@ -27,4 +27,6 @@ public interface SchedulecourseMapper {
     List<Schedulecourse> selectScheduleByClassId(@Param("classroom")Integer classroom);
 
     Schedulecourse selectScheduleByClassAndTime(@Param("classroom")Integer classroom, @Param("time")Integer time);
+
+    Schedulecourse selectScheduleByeducationId(@Param("educationplan")Integer educationplan);
 }

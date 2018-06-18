@@ -38,112 +38,52 @@
 <body>
 <!-- WRAPPER -->
 <div id="wrapper">
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="brand">
-            <a href="index.html"><img src="manager/img/logo-dark.png" alt="Klorofil Logo" class="img-responsive logo"></a>
-        </div>
-        <div class="container-fluid">
-            <div id="navbar-menu">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <ul class="dropdown-menu notifications">
-                            <li><a href="#" class="notification-item"><span class="dot bg-warning"></span>System space is almost full</a></li>
-                            <li><a href="#" class="notification-item"><span class="dot bg-danger"></span>You have 9 unfinished tasks</a></li>
-                            <li><a href="#" class="notification-item"><span class="dot bg-success"></span>Monthly report is available</a></li>
-                            <li><a href="#" class="notification-item"><span class="dot bg-warning"></span>Weekly meeting in 1 hour</a></li>
-                            <li><a href="#" class="notification-item"><span class="dot bg-success"></span>Your request has been approved</a></li>
-                            <li><a href="#" class="more">See all notifications</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="manager/img/user.png" class="img-circle" alt="Avatar"> <span>Samuel</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <!-- END NAVBAR -->
-    <!-- LEFT SIDEBAR -->
-    <div id="sidebar-nav" class="sidebar">
-        <div class="sidebar-scroll">
-            <nav>
-                <ul class="nav">
-                    <li>
-                        <a href="#graduation" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>毕业论文</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-                        <div id="graduation" class="collapse ">
-                            <ul class="nav">
-                                <li><a href="${basePath}/adminGraduate/show" class="">查询所有课题</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li><a href="${basePath}/adminSrtp/show" class=""><i class="lnr lnr-code"></i> <span>查询所有SRTP</span></a></li>
-                    <li><a href="${basePath}/adminProject/show" class=""><i class="lnr lnr-chart-bars"></i> <span>查询教研/教材/教改项目</span></a></li>
-                    <li>
-                        <a href="#schedule" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>毕业论文</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-                        <div id="schedule" class="collapse ">
-                            <ul class="nav">
-                                <li><a href="${basePath}/adminSchedule/toPublicSchedule" class="">添加教学计划</a></li>
-                            </ul>
-                            <ul class="nav">
-                                <li><a href="${basePath}/adminSchedule/showUnselected" class="">未排好的课程</a></li>
-                            </ul>
-                            <ul class="nav">
-                                <li><a href="${basePath}/adminSchedule/toClass" class="">查看课程表</a></li>
-                            </ul>
-                            <ul class="nav">
-                                <li><a href="${basePath}/adminSchedule/toBuildClass" class="">管理楼和教室</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </div>
-    <!-- END LEFT SIDEBAR -->
+    <jsp:include page="teacherHeader.jsp"/>
     <!-- MAIN -->
     <div class="main">
         <!-- MAIN CONTENT -->
         <div class="main-content">
             <div class="container-fluid">
-                <h3 class="page-title">已发布的项目课题</h3>
+                <h3 class="page-title">显示自己的课程</h3>
                 <div class="row">
                     <div class="col-md-6">
                         <!-- BASIC TABLE -->
                         <div class="panel">
                             <div class="panel-heading">
                                 <h3 class="panel-title">
-                                    项目列表
-                                    <c:if test="${!empty addResult}">您选择的这个时段已经被占用,请重新选择</c:if>
+                                    课程列表
                                 </h3>
                             </div>
                             <div class="panel-body">
                                 <table class="table">
                                     <thead>
                                     <tr>
-                                        <th></th>
                                         <th>课程名称</th>
-                                        <th>老师</th>
-                                        <th>操作</th>
-                                        <th>教室</th>
-                                        <th>时间</th>
-                                        <th></th>
-                                        <th><input id="Auto" type="button" value="自动排课"></th>
+                                        <th>排课时间</th>
                                         <th>要求</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <c:forEach items="${educationplanList}" var="education" varStatus="item">
+                                    <c:forEach items="${educationplanList}" var="education">
                                         <tr>
-                                            <td>${item.count}</td>
-                                            <td>${education.content}</td>
                                             <form action="${basePath}/teacherSchedule/addRequest?educationplanId=${education.id}" method="post">
-                                            <td><input type="text" value="${education.request}"></td>
-                                            <td><a>课程安排时间</a></td>
-                                            <td><input type="submit" value="填写要求"></input></td>
+                                            <td>${education.content}</td>
+                                            <td>
+                                                <c:if test="${education.term eq 'select'}">
+                                                    <a href="${basePath}/teacherSchedule/showCourseDetail?educationplanId=${education.id}">查询排课时间</a>
+                                                </c:if>
+                                                <c:if test="${empty education.term}">
+                                                    还未排课
+                                                </c:if>
+                                            </td>
+                                                <c:if test="${empty education.term}">
+                                                    <td>
+                                                        <input type="text" name="request" value="${education.request}" >
+                                                    </td>
+                                                    <td>
+                                                        <input type="submit" value="填写">
+                                                    </td>
+                                                </c:if>
                                             </form>
                                         </tr>
                                     </c:forEach>
@@ -178,6 +118,23 @@
         window.location.href="${basePath}/adminProject/detail?projectId="+projectId;
     })
 
+    $("input[name='doDel']").click(function () {
+        var projectId = this.id;
+        window.location.href="${basePath}/adminProject/doDel?projectId="+projectId;
+    })
+
+    //得到选中的值，ajax操作使用
+    $("#Auto").click(function() {
+        var planList="";
+        var id = document.getElementsByName('educationplan');
+
+        for(var i = 0; i < id.length; i++){
+            if(id[i].checked)
+                planList += id[i].value+"e";
+        }
+        alert(planList);
+        window.location.href="${basePath}/adminSchedule/autoArranging?planList="+planList;
+    });
 </script>
 </body>
 </html>

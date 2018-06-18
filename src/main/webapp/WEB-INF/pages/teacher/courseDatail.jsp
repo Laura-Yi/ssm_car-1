@@ -38,13 +38,13 @@
 <body>
 <!-- WRAPPER -->
 <div id="wrapper">
-    <jsp:include page="teacherHeader.jsp"/>
+    <jsp:include page="teacherHeader.jsp"/>s
     <!-- MAIN -->
     <div class="main">
         <!-- MAIN CONTENT -->
         <div class="main-content">
             <div class="container-fluid">
-                <h3 class="page-title">SRTP花费详情</h3>
+                <h3 class="page-title">课程时间详情</h3>
                 <div class="row">
                     <div class="col-md-6">
                         <!-- BASIC TABLE -->
@@ -56,42 +56,20 @@
                                 <table class="table">
                                     <thead>
                                     <tr>
-                                        <th >课题：</th>
-                                        <th>${projectmanager.projectname}</th>
-                                        <th></th>
-                                        <th></th>
+                                        <th>内容</th>
+                                        <th >教室</th>
+                                        <th>地址</th>
+                                        <th>老师</th>
+                                        <th>时间</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <th>序号</th>
-                                            <th>花费项目</th>
-                                            <th>具体数目</th>
-                                            <th>操作</th>
-                                        </tr>
-                                        <c:forEach items="${projectcostList}" var="projectCost" varStatus="item">
-                                        <tr>
-                                            <td>${item.count}</td>
-                                            <td>${projectCost.detail}</td>
-                                            <td>${projectCost.cost}</td>
-                                            <td><input type="button" value="删除" name="delCost" id="${projectCost.id}"></td>
-                                        </tr>
-                                        </c:forEach>
-                                        <tr>
-                                            <td>project实际花费总额：</td>
-                                            <td>${total}</td>
-                                            <td>project预算花费:</td>
-                                            <td>${projectmanager.buget}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <form action="${basePath}/teacherProject/addCost?projectId=${projectmanager.id}" method="post" >
-                                                    <td>详情：<input type="text" name="detail"></td>
-                                                    <td>花费：<input type="text" name="cost" value="0"></td>
-                                                    <td><input type="submit" name="upload" value="添加花费项"/></td>
-                                                </form>
-                                            </td>
-                                            <td></td>
+                                            <td>${educationplan.content}</td>
+                                            <td>${classroom.name}</td>
+                                            <td>${classroom.building}</td>
+                                            <td>${teacher.name}</td>
+                                            <td>${timeDE}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -118,18 +96,5 @@
 <script src="manager/vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="manager/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <script src="manager/scripts/klorofil-common.js"></script>
-<script type="text/javascript">
-$("input[name='cost']").mouseout(function(){
-    var reg = /^[0-9]+$/ ;
-    if (!reg.test(this.value)) {
-        alert("请输入正整数");
-    }
-});
-
-$("input[name='delCost']").click(function () {
-    var projectCostId = this.id;
-    window.location.href="${basePath}/teacherProject/delProjectCost?projectId=${projectmanager.id}&projectCostId="+projectCostId;
-})
-</script>
 </body>
 </html>

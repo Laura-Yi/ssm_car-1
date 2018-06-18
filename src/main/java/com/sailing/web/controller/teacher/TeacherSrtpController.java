@@ -126,7 +126,7 @@ public class TeacherSrtpController {
     public String upload(MultipartFile file, HttpServletRequest request, @PathVariable String fileType, HttpSession session) throws IOException{
         String srtpId = request.getParameter("srtpId");
         String fileName = fileType+ MyFileUtil.getExtention(file.getOriginalFilename());
-        String filePath = path+"\\graduation\\gra"+srtpId;
+        String filePath = path+"\\srtp\\srtp"+srtpId;
         File dir = new File(filePath,fileName);
         if(!dir.exists()){
             dir.mkdirs();

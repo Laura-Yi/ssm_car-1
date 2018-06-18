@@ -41,4 +41,10 @@ public class StudentLoginController {
             return "success";
         } else { return "fail";}
     }
+
+    @RequestMapping("/logout")
+    public String logout(HttpSession session){
+        session.invalidate();
+        return "login-multi";
+    }
 }
